@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Epsalt</title>
     <meta charset="utf-8"/>
-    <title>epsalt.ca</title>
-    <script type="text/javascript" src="grid.js"></script>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="epsalt's personal website">
+    <script type="text/javascript" src="walker.js"></script>
     <style type="text/css">
-      body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;padding:010px;font-family:sans-serif}
-      h1,h2,h3{line-height:1.2}
-      a{text-decoration: none; color:#2200CC;}
+      body{margin:40px auto;max-width:600px;line-height:1.5;font-size:18px;padding:010px;font-family:Helvetica,sans-serif;color:#333;}
+      h1,h2,footer{margin:22px 0px}
+      h1{font-weight: normal; font-size:2.6em; letter-spacing:0.02em;}
       ul{padding:0; list-style-type:none;}
+      a{text-decoration: none; color:#2200CC;}
+      canvas{width:100%; height:100px; margin:0px;}
+      footer{border-top:1px solid #777; padding-top:5px;}
     </style>
   </head>
   <body onload="draw();">
-    <h1>epsalt</h1>
-    <canvas id="walker" width="650" height="100"></canvas>
+    <h1>Epsalt</h1>
+    <canvas id="walker"></canvas>
     <h2>About</h2>
-    <p>Hey, welcome! This is my website.</p>
-    <p>My name is Evan, and I live in Calgary. I am interested in
-    statistics, data viz, programming, and entrepreneurship. In my
-    free time I like to run, ride bikes, and read about
-    technology.</p>
+    <p>Hey, welcome to my website.</p>
+    <p>
+      My name is Evan, and I live in Calgary. I am interested in
+      statistics, data visualization and programming. In my
+      free time I like to run, ride bikes and read about
+      technology.
+    </p>
     <h2>Contact</h2>
-
     <p> Send me an email if you want to chat about something or other. </p>
-    <ul>
-      <li>evan (at) epsalt (dot) com</li>
-    </ul>
+    <p>evan (at) epsalt (dot) com</p>
     <h2>Social</h2>
     <ul>
       <li><a href="https://www.twitter.com/epsalt">twitter</a></li>
@@ -33,5 +37,8 @@
       <li><a href="https://www.goodreads.com/epsalt">goodreads</a></li>
       <li><a href="https://www.dotabuff.com/players/15790694">dotabuff</a></li>
     </ul>
+    <footer>
+      Last updated on November 22, 2016
+    </footer>
   </body>
 </html>
