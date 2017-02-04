@@ -24,7 +24,6 @@ function draw() {
 function animate(coords, ctx, dims, time, fpsInterval) {
     // if the walker goes out of bounds reset
     var elapsed = Date.now() - time;
-    console.log(elapsed);
     if(elapsed > fpsInterval) {
         time = Date.now();
         if (coords[0] >= dims.nrows ||
