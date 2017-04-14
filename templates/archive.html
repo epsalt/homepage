@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+<p>
+  This is a complete archive of posts on this website from the
+  beginning of all time.
+</p>
+{{ content }}
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Tags</th>
+  </tr>
+  <tbody>
+  {% for post in posts %}
+  <tr>
+    <td>{{ post.date.strftime("%Y-%m-%d") }}</td>
+    <td><a href={{ post.link}}>{{ post.meta.get('title') }}</a></td>
+    <td>
+    {% for tag in post.meta.get('tags') %}
+    <code class="tag"><a href="/tag/{{ tag }}.html">{{ tag }}</a></code>
+    {% endfor %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

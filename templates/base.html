@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>e.p salt</title>
+    <meta charset="utf-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="e.p salt">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300" rel="stylesheet">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="/static/walker.js"></script>
+  </head>
+  <body onload="draw();">
+    <div class="container">
+      <div class="row">
+        <div class="three columns" style="margin-top: 5%">
+          <canvas id="walker" width="180" height="180"></canvas>
+          <hr>
+          <h3 class="sidebar"><strong>Navigate</strong></h3>
+          <ul class="sidebar">
+            <li><a href="/" class="nav">Home</a></li>
+            <li><a href="/archive.html" class="nav">Archive</a></li>
+      	    <li><a href="/about.html" class="nav">About</a></li>
+          </ul>
+          <h3 class="sidebar"><strong>Most Recent Posts</strong></h3>
+          <ul class="sidebar">
+            {% for post in posts[:5] %}
+            <li><a href=/{{ post.link }}>{{ post.meta.get('title') }}</a></li>
+            {% endfor %}
+          </ul>
+          <h3 class="sidebar"><strong>Elsewhere</strong></h3>
+          <ul class="sidebar">
+            <li><a href="https://twitter.com/epsalt" class="nav">Twitter</a></li>
+            <li><a href="https://github.com/epsalt" class="nav">Github</a></li>
+            <li><a href="mailto:evan@epsalt.ca" class="nav">Email</a></li>
+          </ul>
+        </div>
+        <div class="eight columns offset-by-one" style="margin-top: 5%">
+          <h1 class="title"><a href="/">from the desk of e.p salt</a></h1>
+          <hr>
+          {% block body %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

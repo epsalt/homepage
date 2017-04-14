@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/epsalt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://epsalt.ca
+  * I am epsalt (https://keybase.io/epsalt) on keybase.
+  * I have a public key with fingerprint 2B6E 77F9 FA16 6760 2FE7  9385 2D77 E111 AD47 68FC
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01200952e968ab8276887aa0f5c094f7c42c40eada1660c326b35fb087a0fdd678fd0a",
+            "fingerprint": "2b6e77f9fa1667602fe793852d77e111ad4768fc",
+            "host": "keybase.io",
+            "key_id": "2d77e111ad4768fc",
+            "kid": "0101584a53c489212bc5ae4323faa3189c3ca6abd1adbff804415547f769373880e10a",
+            "uid": "d300b6654ce7bb122817bde8e70f3519",
+            "username": "epsalt"
+        },
+        "service": {
+            "hostname": "epsalt.ca",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1487537853,
+    "expire_in": 157680000,
+    "prev": "61b56d552704d0fce29b6c80ff017f1f5ede86bd519733615543b1372f15c4e7",
+    "seqno": 16,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.62
+Comment: https://keybase.io/crypto
+
+yMNrAnicbVJtUFRVGGaJ78YFtBzRYOiiIIRw7se55y6jCRqYMUrCOLQRbvfjXPYK
+3l12F5A2GEL8QEEWMipMm+hPIkZ8NUliQC6BTI5lNVk62qChptbGqOSkdC+TP5rp
+/Dlz3vM8z/s877yn5j3mF2ZYUfFL5LF11r8NE8MtZX4vdQQNugnBJlUSaW6iGM9d
+uETCTpelWJGINAKQFAAmSGETy/ECRyGW4xDPAxmKwMTISGQokQGYl3iSZYFIU6xA
+Q1kAGgjIksQiTpYATyQTsqIWYYfdoaguTZYSWIyQbJJ1GmIBJWNkojlISQhhkiR5
+idE6yaJGtNqcOkMzJ/BOnKLYtJr2sMzZ+x/8I9+AhBzDQ1pkOBNFUoIIeczQFC3z
+PE1yJpEWeZYXJI0qyDIHGIaEkEEyYk00ojkOYHLOd9mcnEQDILAsZESMBIGkKI5E
+goQ5jIBMQ9KkA53YofLbsIbGdidf4iKqkgmtVq6IWB+rnuM//ymirm932Fw20Vai
+la0ulz1NZ7kq7TqsAguWfwUsgqJK2gQ1Qjl2OBWbSqSRGlJ0KboiyXAI0oiDdDKB
+t9sVB7YoOgJqQwHa0dvgck2SJQXIShBSCDASkEVMmQRW5IAsAxLJpAyxFooVJC0S
+omlWHwktkDSiZBKKDEaEHqlUtWnarOaTL9I0nUqRyrvKHJioGhl+JcDPEOYXFOiv
+r5ZfWGjEo4XLPB3+MNZX/OqT/eGHHj/Y6Ml9o3Pl8V13A4d/vjHauy5vx4OGnrrz
+7WsP37o0k3/tSIBvtGbIM9D3hPG1k3dWp7JKxu241HRfsrlq6diQ6ukNfnrj1jXs
+moL9/IWY7pHm+AXzbffq/CcGP13buj6rdNo7i+kdi3cuv/iTp7olu7e9/uRKuHGT
+MeP+ij0bIkY7b77oqIz5LjP8w5Aua0LJkrHiiLNfTAxPd7fm7L7sv5trNqT7hDPf
+5yedXV991Fsw0rbp2CStRMW+fbXozpqKvsiO6881LA2mfzv8cutf07mJP+bVrSrp
+uN2SmeVtE/KiE/ZcLTjdGWW4X1G4M/vEoHFeoiPfbTfuu6Z2B29ePjV5tKnZfNC8
+JfB87L7y5m+ftdamZh/o39wzvHX1DNN/7kz8pbaHSl98NJt0JftK1VR3hrny/ain
+ahsWVcQ3DRwAv379jv33oLzZZ97yIu/Qku76uD+/CpgKD/kgpCYT3DDmLqiDkT0X
+V802+kq9xssvVLtaQn2L+ksjTErxvejJcKl+/PPcdzu7xkajxNcfpGw5cnPX2B8s
+THQasr6kJupP5VvGU/qyUnrS3XenGgtBQda2as/14Jhb46rnvY+WtS0UTpRvmLCY
+ewcuHPph/8cBn83EFTnedCTPzzTU1hR+k2QdGHDnMC1we0xg6EI1R/3EfPxce9ey
+HnfCwPN7mxb/A61BtsU=
+=FU0v
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/epsalt
+
+==================================================================
