@@ -2,6 +2,8 @@ html {
     overflow-y: scroll;
 }
 
+/* Headings */
+
 h1.title {
     font-family: 'Merriweather', serif;
     font-weight: 100;
@@ -26,6 +28,8 @@ h3.sidebar {
     margin-bottom: 1rem;
 }
 
+/* Posts */
+
 a {
     color: #6D6DE1;
     text-decoration: none;
@@ -33,12 +37,64 @@ a {
 
 figure {
     margin: 0;
-}             
+}
+
+div.post_nav {
+    overflow: auto;
+}
+
+/* Sidebar */
 
 ul.sidebar {
     list-style: none;
 }
 
-div.post_nav {
+/* Nav */
+
+nav {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
     overflow: auto;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+nav ul {
+    margin: 0;
+}
+
+nav li {
+    list-style: none;
+    float: left;
+    width: 33%;
+    margin: 0;
+}
+
+nav li a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #6D6DE1;
+} 
+
+/* Media queries */
+
+.title, .sidebar {
+    display: none;
+}
+
+@media (min-width: 550px) {
+    nav, .navbar-spacer {
+        display: none;
+    }
+
+    .sidebar, .title {
+        display: block;
+    }
 }
