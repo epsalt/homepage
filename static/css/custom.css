@@ -49,6 +49,12 @@ ul.sidebar {
     list-style: none;
 }
 
+/* Archive */
+
+.archive-line {
+    margin-bottom: 0;
+}
+
 /* Nav */
 
 nav {
