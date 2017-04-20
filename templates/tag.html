@@ -2,24 +2,16 @@
 {% block body %}
 {{ content }}
 <p> All posts tagged '{{ tag }}' </p>
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Title</th>
-    <th>Tags</th>
-  </tr>
-  <tbody>
-  {% for post in tag_posts %}
-  <tr>
-    <td>{{ post.date.strftime("%Y-%m-%d") }}</td>
-    <td><a href=/{{ post.link }}>{{ post.meta.get('title') }}</a></td>
-    <td>
-    {% for tag in post.meta.get('tags') %}
-    <code class="tag"><a href="/tag/{{ tag }}.html">{{ tag }}</a></code>
+{% for post in tag_posts %}
+
+<p class="archive-line">
+  {{ post.date.strftime("%Y-%m-%d") }} &mdash;
+  <a href={{ post.link}}>{{ post.meta.get('title') }}</a>
+</p>
+<p class=>
+  {% for tag in post.meta.get('tags') %}
+  <code class="tag"><a href="/tag/{{ tag }}.html">{{ tag }}</a></code>
     {% endfor %}
-    </td>
-  </tr>
   {% endfor %}
-  </tbody>
-</table>
+</p>
 {% endblock %}
