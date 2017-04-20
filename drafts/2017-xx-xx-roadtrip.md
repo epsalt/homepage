@@ -1,7 +1,7 @@
 ---
 type: post
 title: Roadtrip
-date: 2017-04-01 12:16:45 -0700
+date: 2017-xx-xx xx:xx:xx -0700
 url: roadtrip
 tags: r
       cartography
