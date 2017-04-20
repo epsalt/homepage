@@ -11,39 +11,76 @@ function draw() {
             nrows = 18,
             end = 20,
             n = 0,
+            nwalkers = 10,
             dims = {"nrows": nrows,
                     "ncols": Math.round(canvas.scrollHeight / canvas.scrollWidth * nrows),
                     "width": canvas.width / nrows,
                     "height": canvas.height / Math.round(canvas.scrollHeight / canvas.scrollWidth * nrows)},
-            coords = [0, Math.round(dims.ncols / 2)], // start on the middle of the left side, walk right
             fpsInterval = 75 / 10,
             time = Date.now();
-        
+
+        var walkers = [];
+        for (var i = 0; i < nwalkers; i++) {
+            walkers.push(new Walker(ctx, dims));
+        }
+
         ctx.fillStyle = "rgba(0, 0, 200, 0.25)";
-        animate(coords, ctx, dims, time, fpsInterval, n, end);
+        animate(walkers, time, fpsInterval, n, end);
     }
 }
 
-function animate(coords, ctx, dims, time, fpsInterval, n, end) {
-    // if the walker goes out of bounds reset
+function animate(walkers, time, fpsInterval, n, end) {
     var elapsed = Date.now() - time;
-    if(elapsed > fpsInterval) {
+    if (elapsed > fpsInterval) {
         time = Date.now();
-        if (coords[0] >= dims.nrows ||
-            coords[1] <= 0 ||
-            coords[1] >= dims.ncols) {
-            coords = [0, Math.round(Math.random() * dims.ncols)];
-            n++;
-         } else {
-            // draw a rect then take a step        
-            ctx.fillRect(coords[0] * dims.width, coords[1] * dims.height, dims.width, dims.height);        
-            var step = Math.round((Math.random() * 2) - 1);
-            coords = [coords[0] + 1, coords[1] + step];
-         }
+        for (var i = 0; i < walkers.length; i++) {
+            var w = walkers[i];
+            if (w.rip == false) {
+                w.step();
+            } else {
+                walkers[i] = new Walker(w.ctx, w.dims);
+                n++;
+            }
+        }
     }
-    if(n < end) {
+
+    if (n < end) {
         requestAnimationFrame(function(){
-            animate(coords, ctx, dims, time, fpsInterval, n, end);
+            animate(walkers, time, fpsInterval, n, end);
         });
     }
 }
+
+var Walker = class {
+    constructor(ctx, dims) {
+        this.ctx = ctx;
+        this.dims = dims;
+        this.x = 0;
+        this.y = Math.round(Math.random() * dims.ncols);
+        this.rip = false; // death is real
+    }
+
+    step() {
+        if (this.x >= this.dims.nrows ||
+            this.y <= 0 ||
+            this.y >= this.dims.ncols) {
+            this.rip = true;
+        } else {
+            this.draw();
+            this.increment();
+        }
+    }
+
+    draw() {
+        this.ctx.fillRect(this.x * this.dims.width,
+                          this.y * this.dims.height,
+                          this.dims.width,
+                          this.dims.height);
+    }
+
+    increment() {
+        var y_step = Math.round((Math.random() * 2) - 1);
+        this.x = this.x + 1;
+        this.y = this.y + y_step;
+    }
+};
