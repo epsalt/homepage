@@ -43,6 +43,11 @@ div.post_nav {
     overflow: auto;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Sidebar */
 
 ul.sidebar {
