@@ -27,7 +27,7 @@ class Page(object):
                                   'markdown.extensions.meta',
                                   'markdown.extensions.smarty'],
                       output_format='html5')
-        
+
         with open(md_fname, 'r') as md_file:
             self.html = md.convert(md_file.read())
 
@@ -140,7 +140,7 @@ def publish():
         tag_args = {'posts': sorted_posts,
                     'tag_posts': posts,
                     'tag': tag}
-        RootPage('tag.md').render('tag.html', tag_args, out=out)
+        RootPage(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, out=out)
 
     # Render all blog posts
     for post in sorted_posts:
@@ -148,8 +148,8 @@ def publish():
 
     # Render site root pages
     sorted_posts[0].render('post.html', args, out=join('index.html'))
-    RootPage('about.md').render('about.html', args)
-    RootPage('archive.md').render('archive.html', args)
+    RootPage(join(TEMPLATE_DIR, 'about.md')).render('about.html', args)
+    RootPage(join(TEMPLATE_DIR, 'archive.md')).render('archive.html', args)
 
     return(sorted_posts)
 
