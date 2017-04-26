@@ -48,6 +48,10 @@ img {
     height: auto;
 }
 
+blockquote {
+    color: #717171;
+}
+
 /* Sidebar */
 
 ul.sidebar {
