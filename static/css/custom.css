@@ -52,6 +52,10 @@ blockquote {
     color: #717171;
 }
 
+ul {
+    list-style: disc inside;
+}
+
 /* Sidebar */
 
 ul.sidebar {
