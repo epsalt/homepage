@@ -43,7 +43,7 @@ div.post_nav {
     overflow: auto;
 }
 
-img {
+img, object {
     max-width: 100%;
     height: auto;
 }
