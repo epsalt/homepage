@@ -35,6 +35,10 @@ a {
     text-decoration: none;
 }
 
+a.post-title {
+    color: #222;
+}
+
 figure {
     margin: 0;
 }
