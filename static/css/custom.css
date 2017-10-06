@@ -50,6 +50,7 @@ div.post_nav {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 blockquote {
@@ -58,6 +59,10 @@ blockquote {
 
 ul {
     list-style: disc inside;
+}
+
+li {
+    margin-bottom: 0.5rem;
 }
 
 /* Sidebar */
