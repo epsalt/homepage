@@ -5,7 +5,6 @@ Static site generator for epsalt.ca. Converts markdown documents to
 html using markdown and jinja2. Generates archive and tag pages.
 """
 
-import re
 from collections import defaultdict
 from os import listdir, makedirs
 from os.path import exists, join
@@ -13,7 +12,6 @@ from os.path import exists, join
 from dateutil.parser import parse
 from markdown import Markdown
 from jinja2 import FileSystemLoader, Environment
-import yaml
 
 POST_DIR = 'posts'
 TEMPLATE_DIR = 'templates'
