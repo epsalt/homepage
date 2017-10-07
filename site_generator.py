@@ -149,7 +149,7 @@ def publish():
     RootPage(join(TEMPLATE_DIR, 'about.md')).render('about.html', args)
     RootPage(join(TEMPLATE_DIR, 'archive.md')).render('archive.html', args)
 
-    return(sorted_posts)
+    return sorted_posts
 
 if __name__ == "__main__":
     publish()
