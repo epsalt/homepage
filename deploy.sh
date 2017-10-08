@@ -17,3 +17,7 @@ aws s3 cp site/images s3://$bucket_name/images \
    --metadata-directive REPLACE \
    --cache-control max-age=604800 \
    --recursive
+
+aws s3 cp s3://$bucket_name/rss s3://$bucket_name/rss \
+    --metadata-directive REPLACE \
+    --content-type 'application/xml'

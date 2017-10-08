@@ -10,12 +10,15 @@ from os import listdir, makedirs
 from os.path import exists, join
 
 from dateutil.parser import parse
+from feedgen.feed import FeedGenerator
 from markdown import Markdown
 from jinja2 import FileSystemLoader, Environment
 
-POST_DIR = 'posts'
+POST_DIR = 'posts/'
 TEMPLATE_DIR = 'templates'
-SITE_DIR = 'site'
+SITE_DIR = 'site/'
+SITE_URL = 'https://epsalt.ca/'
+IMAGE_DIR = 'images/'
 
 class Page(object):
     """Base class for static website page rendering"""
@@ -103,6 +106,26 @@ class Post(Page):
         else:
             self.ppost = posts[index+1]
 
+    def set_rss_attributes(self, feed):
+        """
+        Update RSS atrributes.
+
+        Given a python-feedgenerator object, this adds an entry for
+        the post from the post content and metadata.
+
+        """
+
+        # Metadata tags
+        feed_entry = feed.add_entry()
+        feed_entry.id(join(SITE_URL, self.link))
+        feed_entry.title(self.meta.get('title'))
+        feed_entry.published(self.date)
+        feed_entry.updated(self.meta.get('updated'))
+
+        # Full content with hardlinked images
+        content = self.html.replace('src="/'+IMAGE_DIR,
+                                    'src="{}'.format(join(SITE_URL, IMAGE_DIR)))
+        feed_entry.content(content, type="html")
 
 def publish():
     """
@@ -126,12 +149,21 @@ def publish():
     # Jinja2 template arguments
     args = {'posts': sorted_posts}
 
+    # RSS header
+    feed = FeedGenerator()
+    feed.id(SITE_URL)
+    feed.title('from the desk of e.p salt')
+    feed.author({'name':'E.P Salt', 'email':'evan@epsalt.ca'})
+    feed.link(href=SITE_URL, rel="self")
+    feed.language('en')
+
     # Build tag dict and render tag pages
     makedirs(join(SITE_DIR, "tag"))
     tag_dict = defaultdict(list)
     for post in sorted_posts:
         for tag in post.meta.get('tags'):
             tag_dict[tag].append(post)
+        post.set_rss_attributes(feed)
 
     for tag, posts in tag_dict.items():
         out = join("tag", tag) + ".html"
@@ -148,6 +180,7 @@ def publish():
     sorted_posts[0].render('post.html', args, out=join('index.html'))
     RootPage(join(TEMPLATE_DIR, 'about.md')).render('about.html', args)
     RootPage(join(TEMPLATE_DIR, 'archive.md')).render('archive.html', args)
+    feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
 
     return sorted_posts
 
