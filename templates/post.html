@@ -20,7 +20,7 @@
 <p class="dateline">
   {{ post.date.strftime("%Y-%m-%d") }} &mdash;
   {% for tag in post.meta.get('tags') %}
-  <code class="tag"><a href="/tag/{{ tag }}.html">{{ tag }}</a></code>
+  <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
   {% endfor %}
 </p>
 <hr>

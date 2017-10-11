@@ -67,7 +67,7 @@ class RootPage(Page):
         Page.__init__(self, f)
         self.directory = "./"
         if self.meta.get('url') is not None:
-            self.link = self.meta.get('url') + ".html"
+            self.link = self.meta.get('url')
 
 
 class Post(Page):
@@ -79,7 +79,7 @@ class Post(Page):
         self.date = parse(self.meta.get('date'))
         self.directory = join(self.date.strftime('%Y'),
                               self.date.strftime('%m'))
-        self.link = join(self.directory, self.meta.get('url')) + ".html"
+        self.link = join(self.directory, self.meta.get('url'))
         self.ppost = None
         self.npost = None
 
@@ -166,7 +166,7 @@ def publish():
         post.set_rss_attributes(feed)
 
     for tag, posts in tag_dict.items():
-        out = join("tag", tag) + ".html"
+        out = join("tag", tag)
         tag_args = {'posts': sorted_posts,
                     'tag_posts': posts,
                     'tag': tag}
