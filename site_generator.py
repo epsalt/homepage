@@ -177,11 +177,15 @@ def publish():
         post.render('post.html', args)
 
     # Render site root pages
-    sorted_posts[0].render('post.html', args, out=join('index.html'))
     RootPage(join(TEMPLATE_DIR, 'about.md')).render('about.html', args)
     RootPage(join(TEMPLATE_DIR, 'archive.md')).render('archive.html', args)
     RootPage(join(TEMPLATE_DIR, '404.md')).render('404.html', args)
     feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
+
+    # Index page
+    index_args = args
+    index_args['index'] = True
+    sorted_posts[0].render('post.html', index_args, out=join('index.html'))
 
     return sorted_posts
 
