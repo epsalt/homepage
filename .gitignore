@@ -2,3 +2,4 @@
 *.cfg
 site/
 static/.well-known/
+__pycache__/
