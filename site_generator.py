@@ -7,7 +7,7 @@ html using markdown and jinja2. Generates archive and tag pages.
 
 from collections import defaultdict
 from os import listdir, makedirs
-from os.path import exists, join
+from os.path import dirname, exists, join
 
 from dateutil.parser import parse
 from feedgen.feed import FeedGenerator
@@ -36,8 +36,10 @@ class Page(object):
         self.meta = {key: value if key == "tags" else value[0]
                      for key, value in md.Meta.items()}
 
-    def render(self, template, template_args, out=None):
+    def render(self, template, template_args, outpath=None):
         """Method for rendering Pages with markdown and jinja2"""
+
+        outpath = join(SITE_DIR, outpath)
 
         # Build jinja template argument dict
         args = {'post': self,
@@ -45,30 +47,15 @@ class Page(object):
         for key, value in template_args.items():
             args[key] = value
 
-        # Build path for html document unless overridden by 'out'
-        if out is None:
-            out = self.link
-        outpath = join(SITE_DIR, out)
-
         # Create directory if necessary
-        if not exists(join(SITE_DIR, self.directory)):
-            makedirs(join(SITE_DIR, self.directory))
+        if not exists(dirname(outpath)):
+            makedirs(dirname(outpath))
 
         # Use jinja to render template and save
         env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
         text = env.get_template(template).render(args)
         with open(outpath, 'w') as outfile:
             outfile.write(text)
-
-
-class RootPage(Page):
-    """Class for pages in the root dir of the website, extends page"""
-    def __init__(self, f):
-        Page.__init__(self, f)
-        self.directory = "./"
-        if self.meta.get('url') is not None:
-            self.link = self.meta.get('url')
-
 
 class Post(Page):
     """Class for blog posts, extends Page"""
@@ -170,24 +157,24 @@ def publish():
         tag_args = {'posts': sorted_posts,
                     'tag_posts': posts,
                     'tag': tag}
-        RootPage(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, out=out)
+        Page(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, out)
 
     # Render all blog posts
     for post in sorted_posts:
-        post.render('post.html', args)
+        post.render('post.html', args, post.link)
 
     # Render site root pages
-    RootPage(join(TEMPLATE_DIR, 'about.md')).render('about.html', args)
-    RootPage(join(TEMPLATE_DIR, 'archive.md')).render('archive.html', args)
-    RootPage(join(TEMPLATE_DIR, '404.md')).render('404.html', args)
+    for root in ['about', 'archive', '404']:
+        root_page = Page(join(TEMPLATE_DIR, root + '.md'))
+        root_page.render(root + '.html', args, root_page.meta.get('url'))
+
+    # Render RSS page
     feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
 
     # Index page
     index_args = args
     index_args['index'] = True
-    sorted_posts[0].render('post.html', index_args, out=join('index.html'))
-
-    return sorted_posts
+    sorted_posts[0].render('post.html', index_args, 'index.html')
 
 if __name__ == "__main__":
     publish()
