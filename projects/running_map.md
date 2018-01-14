@@ -22,7 +22,7 @@ accompanying [blog post][blog].
 ## About
 
 - Tiles copyright [OpenStreetMap contributors][osm].
-- Built with [D3.js][d3] 
+- Built with [D3.js][d3]
 - Map tiling code from [this example][tile].
 - Inspired by [The America's Cup Finale: Oracle's Path to
 Victory][oracle-cup] and the [Strava Global Heatmap][strava-heatmap].

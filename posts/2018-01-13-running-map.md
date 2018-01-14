@@ -58,7 +58,7 @@ With a Strava premium subscription, you can generate your
 own [personalized heatmap][p-heatmap]. This project started out as an
 attempt to recreate my personal heatmap and improve my [D3][d3] skills
 in the process.
-    
+
 Time and speed are an important part of running which you don't get to
 see in the personal heatmap. My goal with this visualization was to
 add a movement piece to the Strava map. The inspiration for this came
@@ -93,7 +93,7 @@ The steps involved in creating the visualization were:
 
 If you want to try creating a similar map with your own data I've put
 all the code and more detailed instructions on [GitHub][git].
-   
+
 ## Performance
 
 My biggest source of pain  on this project has been wrestling with
@@ -112,7 +112,7 @@ the following:
 The visualization is still a bit of a resource hog and isn't as
 buttery smooth as I would like. If anyone who is a better D3
 programmer than I is reading this, pointers would be appreciated!
-   
+
 ## To conclude
 
 - See the full interactive version of the visualization [here][run].
