@@ -72,6 +72,10 @@ li {
     margin-bottom: 0.5rem;
 }
 
+.tip {
+    border-bottom: 1px dotted black;
+}
+
 /* Sidebar */
 
 ul.sidebar {
