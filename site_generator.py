@@ -16,6 +16,7 @@ from jinja2 import FileSystemLoader, Environment
 
 POST_DIR = 'posts/'
 TEMPLATE_DIR = 'templates'
+PROJ_DIR = 'projects'
 SITE_DIR = 'site/'
 SITE_URL = 'https://epsalt.ca/'
 IMAGE_DIR = 'images/'
@@ -170,6 +171,11 @@ def publish():
 
     # Render RSS page
     feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
+
+    # Render project pages
+    projects = [Page(join(PROJ_DIR, proj)) for proj in listdir(PROJ_DIR)]
+    for project in projects:
+        project.render("about.html", args, join(PROJ_DIR, project.meta.get('url')))
 
     # Index page
     index_args = args
