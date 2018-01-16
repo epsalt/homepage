@@ -1,8 +1,8 @@
 ---
 type: post
 title: Revenge of Running Map
-date: 2018-01-013 17:30:00 -0700
-updated: 2018-01-013 17:30:00 -0700
+date: 2018-01-13 17:30:00 -0700
+updated: 2018-01-15 22:30:00 -0700
 url: running-map
 tags: running
       D3
@@ -99,19 +99,20 @@ all the code and more detailed instructions on [GitHub][git].
 My biggest source of pain  on this project has been wrestling with
 performance and frame rate. The position of each point has to be
 updated many times per second for the animation to appear pleasantly
-smooth. This results in hundreds of DOM updates per second.
+smooth.
 
-Getting to a level of performance I was happy with involved  at
-the following:
+The usual D3 workflow consists of binding data to DOM objects and
+rendering them as SVG elements. This DOM integration is a reason why
+D3 is powerful, but also imposes some limitations. Large amounts of
+nodes result in [sluggish animations or browser
+crashes][performance-test].
 
-- Reducing the resampled timestep size
-- Capping framerate with [`d3.interval`][interval]
-- Optimizing the javascript executed in each update step to the best
-  of my ability
-
-The visualization is still a bit of a resource hog and isn't as
-buttery smooth as I would like. If anyone who is a better D3
-programmer than I is reading this, pointers would be appreciated!
+I tried to get to a level of performance that I was happy with using
+SVG rendering but didn't have too much luck. Thankfully I eventually
+found this [very helpful article by Irene Ros about working with D3
+and Canvas][d3-canvas]. Using canvas as a renderer is more appropriate
+for my use case (many frequently updated nodes) and helped alleviate
+my performance woes.
 
 ## To conclude
 
@@ -119,8 +120,8 @@ programmer than I is reading this, pointers would be appreciated!
 - Running is great and you should try it. While you are struggling
   through that Sunday morning long run, just think about all the data
   you are generating.
-- D3 is excellent, but keep performance in mind when rendering [a
-  large number of elements][performance-test].
+- SVG rendering doesn't work well with many nodes. Consider switching
+  to canvas when performance becomes an issue.
 
 [d3]: https://d3js.org
 [git]: https://www.github.com/epsalt/d3-running-map
@@ -139,5 +140,5 @@ programmer than I is reading this, pointers would be appreciated!
 [gpx-py]: https://github.com/tkrajina/gpxpy
 [panda]: https://pandas.pydata.org/
 [osm]: http://www.openstreetmap.org
-[interval]: https://github.com/d3/d3-timer/blob/master/README.md#interval
 [performance-test]: http://tommykrueger.com/projects/d3tests/performance-test.php
+[d3-canvas]: https://bocoup.com/blog/d3js-and-canvas
