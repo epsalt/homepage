@@ -175,7 +175,7 @@ def publish():
     # Render project pages
     projects = [Page(join(PROJ_DIR, proj)) for proj in listdir(PROJ_DIR)]
     for project in projects:
-        project.render("about.html", args, join(PROJ_DIR, project.meta.get('url')))
+        project.render("project.html", args, join(PROJ_DIR, project.meta.get('url')))
 
     # Index page
     index_args = args
