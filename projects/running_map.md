@@ -14,8 +14,7 @@ This map contains data from about 200 runs recorded with
 [Strava][strava] around Calgary, Canada. The longest run is from the
 [2017 Calgary Marathon][marathon]. All the code for this visualization
 is on [GitHub][github]. For more information check out the
-accompanying [blog post][blog]. The visualization is a little sluggish
-on mobile and is best experienced on desktop.
+accompanying [blog post][blog].
 
 <div id="map-wrapper">
   <svg></svg>

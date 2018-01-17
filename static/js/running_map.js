@@ -1,12 +1,14 @@
 /*global d3, window */
 
 var config = {
-    "a": 13,
-    "b": 5,
+    "scale": 98304,
     "lat": 51.0375,
     "lon": -114.09,
     "fps": 15,
-    "resampleInterval": 30
+    "resampleInterval": 30,
+    "trackWidth": 2,
+    "circleWidth": 1,
+    "radius": 2
 };
 
 var canvas = document.querySelector("#running-map"),
@@ -14,19 +16,32 @@ var canvas = document.querySelector("#running-map"),
     detachedContainer = document.createElement("custom"),
     dataContainer = d3.select(detachedContainer);
 
+// initial dimensions
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 var width = canvas.offsetWidth,
     height = canvas.offsetHeight;
 
-if (width > 480) {
-    config.a = 15;
-    config.b = 3;
+function changeResolution(canvas, context, scaleFactor) {
+    // this function from https://stackoverflow.com/a/26047748
+    canvas.style.width = canvas.style.width || canvas.width + 'px';
+    canvas.style.height = canvas.style.height || canvas.height + 'px';
+
+    canvas.width = Math.ceil(canvas.width * scaleFactor);
+    canvas.height = Math.ceil(canvas.height * scaleFactor);
+    context.scale(scaleFactor, scaleFactor);
+}
+
+// changes for mobile devices
+if (width < 480) {
+    config.fps = 8;
+    config.scale = 80000;
+    changeResolution(canvas, context, 2);
 }
 
 var projection = d3.geoMercator()
-    .scale((config.b << config.a) / 2 * Math.PI)
+    .scale((config.scale) / 2 * Math.PI)
     .translate([width / 2, height / 2])
     .center([config.lon, config.lat]);
 
@@ -68,15 +83,15 @@ d3.csv("/data/gpx_rollup.csv", function (error, data) {
         .append("custom")
         .classed("geoPath", true)
         .attr("strokeStyle", "rgba(74,20,134,0.2)")
-        .attr("lineWidth", 2);
+        .attr("lineWidth", config.trackWidth);
 
     var runners = dataContainer.selectAll("custom.circle")
         .data(nested)
         .enter()
         .append("custom")
         .classed("circle", true)
-        .attr("lineWidth", 1)
-        .attr("radius", 2)
+        .attr("lineWidth", config.circleWidth)
+        .attr("radius", config.radius)
         .attr("strokeStyle", "black");
 
     var maxElapsed = Math.max.apply(Math, (data.map(function (d) { return d[3]; })));
