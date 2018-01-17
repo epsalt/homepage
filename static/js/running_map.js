@@ -8,7 +8,8 @@ var config = {
     "resampleInterval": 30,
     "trackWidth": 2,
     "circleWidth": 1,
-    "radius": 2
+    "radius": 2,
+    "source": "/data/gpx_rollup.csv"
 };
 
 var canvas = document.querySelector("#running-map"),
@@ -35,7 +36,9 @@ function changeResolution(canvas, context, scaleFactor) {
 
 // changes for mobile devices
 if (width < 480) {
-    config.fps = 8;
+    config.fps = 10;
+    config.resampleInterval = 45;
+    config.source = "/data/gpx_rollup45.csv";
     config.scale = 80000;
     changeResolution(canvas, context, 2);
 }
@@ -68,7 +71,7 @@ var playButton = d3.select("#play-button"),
     restartButton = d3.select("#restart-button"),
     timer = d3.select("#timer");
 
-d3.csv("/data/gpx_rollup.csv", function (error, data) {
+d3.csv(config.source, function (error, data) {
     if (error) { throw error; }
 
     data = data.map(function (d) { return [+d.lon, +d.lat, +d.index, +d.len]; });
