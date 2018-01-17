@@ -2,7 +2,7 @@
 type: post
 title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
-updated: 2018-01-15 22:30:00 -0700
+updated: 2018-01-16 23:15:00 -0700
 url: running-map
 tags: running
       D3
