@@ -2,7 +2,7 @@
 type: post
 title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
-updated: 2018-01-16 23:15:00 -0700
+updated: 2018-01-17 22:25:00 -0700
 url: running-map
 tags: running
       D3
@@ -40,16 +40,16 @@ and to get to know a different side of your city.
 ## Visualization
 
 Another reason to pick up running is the sweet, sweet data. If you use
-an activity tracker, such as Strava or Runkeeper, every time you go on
-a run, new data in the form of a GPS file is generated. Most activity
-tracker apps allow you to painlessly export your data out of the
-service, which you can then use to do your own analysis or in this
+an activity tracker, such as Strava or Runkeeper, then every time you
+go on a run new data in the form of a GPS file is generated. Most
+activity tracker apps allow you to painlessly export your data out of
+the service. You can then use to do your own analysis, or in this
 case, make maps.
 
-A great example of visualizing activity data is the
-beautiful [Strava Global Heatmap][heatmap]. I have used the global
-heatmap as a resource when traveling to a new and unfamiliar city to
-aid in the search for scenic and well-traveled running paths.
+A great example of visualizing activity data is the beautiful [Strava
+global heatmap][heatmap]. I have used the global heatmap as a resource
+when traveling to new and unfamiliar cities to aid in the search for
+scenic and well-traveled running paths.
 
 ![Personal heatmap](/images/personal-heatmap.png)
 *My Strava [personal heatmap][p-heatmap]*
@@ -68,20 +68,19 @@ by [Mike Bostock][mike] and [Shan Carter][shan] for
 the [New York Times][nyt].
 
 After adding movement, all the points start superimposed and then
-venture out in their different directions. This creates an effect
-similar to a swarm of insects or
-a [Super Meat Boy victory sequence][meat]. The heatmap is built up
-over time as all of the points move along their routes.
+venture out in different directions. This creates an effect similar to
+a swarm of insects or a [Super Meat Boy victory sequence][meat]. The
+heatmap is built up over time as all of the points move along their
+routes.
 
 ## Implementation
 
-The map is displayed in the browser using [D3.js][d3]. I've been
+The map is displayed in the browser using [D3.js][d3]. I have been
 tinkering with the library for a few years and this is my first
-serious project. I relied on a few examples to get things going, such
-as [this block][block] and viewing-source on
-the [America's Cup article][oracle] mentioned earlier.
-
-The steps involved in creating the visualization were:
+serious project. I relied heavily on a few examples to get things
+going, such as [this block][block] and viewing-source on the
+[America's Cup article][oracle] mentioned earlier. Broadly, the steps
+involved in creating the visualization were:
 
 1. Exporting my [run data from Strava][export]
 2. Writing a simple `.gpx` parser in Python (you could also
@@ -96,7 +95,7 @@ all the code and more detailed instructions on [GitHub][git].
 
 ## Performance
 
-My biggest source of pain  on this project has been wrestling with
+My biggest source of pain on this project has been wrestling with
 performance and frame rate. The position of each point has to be
 updated many times per second for the animation to appear pleasantly
 smooth.
@@ -109,10 +108,10 @@ crashes][performance-test].
 
 I tried to get to a level of performance that I was happy with using
 SVG rendering but didn't have too much luck. Thankfully I eventually
-found this [very helpful article by Irene Ros about working with D3
-and Canvas][d3-canvas]. Using canvas as a renderer is more appropriate
-for my use case (many frequently updated nodes) and helped alleviate
-my performance woes.
+stumbled upon a [very helpful article by Irene Ros about working with
+D3 and Canvas][d3-canvas]. Using canvas as a renderer is more
+appropriate for my use case (many frequently updated nodes) and helped
+alleviate my performance woes.
 
 ## To conclude
 
