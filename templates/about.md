@@ -26,5 +26,5 @@ also be contacted via email at evan (at) this domain.
 [github-homepage]: https://github.com/epsalt/homepage
 [skele]: http://getskeleton.com/
 [highlight]: https://highlightjs.org/
-[twitter]: https:/twitter.com/epsalt
+[twitter]: https://twitter.com/epsalt
 [github]: https://github.com/epsalt
