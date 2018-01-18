@@ -2,7 +2,7 @@
 type: post
 title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
-updated: 2018-01-17 22:25:00 -0700
+updated: 2018-01-18 00:30:00 -0700
 url: running-map
 tags: running
       D3
@@ -17,12 +17,12 @@ on [GitHub][git].
 ![Running Map](/images/running-map.gif)
 *Map tiles copyright [OpenStreetMap][osm-copyright] contributors*
 
-I have been tracking my runs for a few years now and have always
-wanted to something with the data. After a <span class="tip"
-title="hence the 'revenge' in the title...">few iterations</span>, this
-map is what I came up with. I have written below about my inspiration
-for the visualization, some technical details, and a bit of
-unnecessary evangelizing for the sport of running.
+I have been tracking my runs for a few years now, and have always
+wanted to do something with the data. After a <span class="tip"
+title="hence the 'revenge' in the title...">few iterations</span>,
+this map is what I came up with. I have written below about my
+inspiration for the visualization, some technical details, and a bit
+of unnecessary evangelizing for the sport of running.
 
 ## On running
 
@@ -41,10 +41,10 @@ and to get to know a different side of your city.
 
 Another reason to pick up running is the sweet, sweet data. If you use
 an activity tracker, such as Strava or Runkeeper, then every time you
-go on a run new data in the form of a GPS file is generated. Most
-activity tracker apps allow you to painlessly export your data out of
-the service. You can then use to do your own analysis, or in this
-case, make maps.
+go on a run new data in the form of a GPS trace file is
+generated. Most activity tracker apps allow you to painlessly export
+your data out of the service. You can then do your own analysis, or in
+this case, make maps.
 
 A great example of visualizing activity data is the beautiful [Strava
 global heatmap][heatmap]. I have used the global heatmap as a resource
@@ -54,18 +54,16 @@ scenic and well-traveled running paths.
 ![Personal heatmap](/images/personal-heatmap.png)
 *My Strava [personal heatmap][p-heatmap]*
 
-With a Strava premium subscription, you can generate your
-own [personalized heatmap][p-heatmap]. This project started out as an
-attempt to recreate my personal heatmap and improve my [D3][d3] skills
-in the process.
+With a Strava premium subscription, you can generate your own
+[personalized heatmap][p-heatmap]. This project started out as an
+attempt to recreate my personal heatmap and improve my D3 skills in
+the process.
 
 Time and speed are an important part of running which you don't get to
 see in the personal heatmap. My goal with this visualization was to
-add a movement piece to the Strava map. The inspiration for this came
-from the
-excellent [America’s Cup Finale data journalism piece][oracle]
-by [Mike Bostock][mike] and [Shan Carter][shan] for
-the [New York Times][nyt].
+convey that motion. The inspiration for this came from the excellent
+[America’s Cup Finale piece][oracle] by [Mike Bostock][mike] and [Shan
+Carter][shan] for the [New York Times][nyt].
 
 After adding movement, all the points start superimposed and then
 venture out in different directions. This creates an effect similar to
@@ -76,42 +74,39 @@ routes.
 ## Implementation
 
 The map is displayed in the browser using [D3.js][d3]. I have been
-tinkering with the library for a few years and this is my first
-serious project. I relied heavily on a few examples to get things
-going, such as [this block][block] and viewing-source on the
-[America's Cup article][oracle] mentioned earlier. Broadly, the steps
-involved in creating the visualization were:
+tinkering with the library for a few years, and this is my first
+serious project. I relied heavily on a few examples to get going,
+especially [this block][block] and viewing source on the [America's
+Cup article][oracle] mentioned earlier. Broadly, the steps involved in
+creating the visualization were:
 
-1. Exporting my [run data from Strava][export]
+1. Exporting [run data from Strava][export]
 2. Writing a simple `.gpx` parser in Python (you could also
    use [gpx-py][gpx-py], but I wanted to write a simple parser as a
    learning exercise)
-3. Resampling data to consistent time interval with [pandas][panda]
-4. Visualizing the  data in the browser using [D3.js][d3]
-   and [OpenStreetMap][osm] tiles
+3. Resampling to a consistent time interval with [pandas][panda]
+4. Visualizing the data in the browser using [D3.js][d3]
 
-If you want to try creating a similar map with your own data I've put
+If you want to try creating a similar map with your own data, I've put
 all the code and more detailed instructions on [GitHub][git].
 
 ## Performance
 
-My biggest source of pain on this project has been wrestling with
-performance and frame rate. The position of each point has to be
-updated many times per second for the animation to appear pleasantly
-smooth.
+My biggest source of pain on this project has been performance and
+frame rate. The position of each point has to be updated many times
+per second for the animation to appear pleasantly smooth.
 
-The usual D3 workflow consists of binding data to DOM objects and
-rendering them as SVG elements. This DOM integration is a reason why
-D3 is powerful, but also imposes some limitations. Large amounts of
-nodes result in [sluggish animations or browser
-crashes][performance-test].
+The usual D3 workflow consists of binding data to the DOM and
+rendering SVG elements. This DOM integration is a reason why D3 is
+powerful, but also imposes some limitations. Large amounts of nodes
+result in [sluggish animations or browser crashes][performance-test].
 
 I tried to get to a level of performance that I was happy with using
-SVG rendering but didn't have too much luck. Thankfully I eventually
-stumbled upon a [very helpful article by Irene Ros about working with
-D3 and Canvas][d3-canvas]. Using canvas as a renderer is more
-appropriate for my use case (many frequently updated nodes) and helped
-alleviate my performance woes.
+SVG rendering but was unsuccessful. Thankfully, I eventually stumbled
+upon a [very helpful article by Irene Ros on working with D3 and
+Canvas][d3-canvas]. Using canvas as a renderer is more appropriate for
+my use case (many frequently updated nodes) and helped solve my
+performance woes.
 
 ## To conclude
 
@@ -119,8 +114,9 @@ alleviate my performance woes.
 - Running is great and you should try it. While you are struggling
   through that Sunday morning long run, just think about all the data
   you are generating.
-- SVG rendering doesn't work well with many nodes. Consider switching
-  to canvas when performance becomes an issue.
+- SVG rendering doesn't work well with many nodes, especially when
+  elements are being frequently updated. Consider switching to canvas
+  when performance becomes an issue.
 
 [d3]: https://d3js.org
 [git]: https://www.github.com/epsalt/d3-running-map
