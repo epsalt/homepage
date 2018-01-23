@@ -27,11 +27,10 @@ accompanying [blog post][blog].
 </div>
 
 <script src="/js/running_map.js"></script>
-</br>
+*Map tiles copyright [OpenStreetMap][osm] contributors*
 
 ## About
 
-- Tiles copyright [OpenStreetMap contributors][osm].
 - Built with [D3.js][d3]
 - Map tiling code from [this example][tile], D3 + canvas idea and some
   code from [this article][d3-canvas].
