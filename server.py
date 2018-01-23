@@ -4,7 +4,10 @@
 # Modified from https://gist.github.com/HaiyangXu/ec88cbdce3cdbac7b8d5
 
 from http.server import HTTPServer, BaseHTTPRequestHandler, SimpleHTTPRequestHandler
+from os import chdir
 import socketserver
+
+chdir("site")
 
 PORT = 8080
 
