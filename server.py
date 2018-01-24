@@ -1,4 +1,5 @@
-# /usr/bin/env python3
+#!/usr/bin/env python3
+
 # Simple http.server modified to serve extensionless
 # files as text/html.
 # Modified from https://gist.github.com/HaiyangXu/ec88cbdce3cdbac7b8d5
