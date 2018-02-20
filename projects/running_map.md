@@ -12,9 +12,9 @@ tags:
 
 This map contains data from about 200 runs recorded with
 [Strava][strava] around Calgary, Canada. The longest run is from the
-[2017 Calgary Marathon][marathon]. All the code for this visualization
-is on [GitHub][github]. For more information check out the
-accompanying [blog post][blog].
+2017 Calgary Marathon. All the code for this visualization is on
+[GitHub][github]. For more information check out the accompanying
+[blog post][blog].
 
 <div id="map-wrapper">
   <svg></svg>
@@ -39,7 +39,6 @@ Victory][oracle-cup] and the [Strava Global Heatmap][strava-heatmap].
 
 [strava]: https://www.strava.com/athletes/22024093)
 [blog]: /2018/01/running-map
-[marathon]: https://www.startlinetiming.com/en/races/2017/calgarymarathon/view/2172
 [github]: https://www.github.com/epsalt/d3-running-map
 [osm]: https://www.openstreetmap.org/copyright
 [d3]: https://d3js.org/
