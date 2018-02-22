@@ -8,8 +8,8 @@ tags:
 
 My name is [Evan][me], and you are currently reading my personal
 website. Hopefully you have found this place in good fortune. I use
-this site to document technical projects and write about other things
-I find interesting.
+this site to document projects and write about other things I find
+interesting.
 
 ## About this website
 
