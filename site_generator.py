@@ -127,6 +127,23 @@ def build_post_list():
 
     return sorted_posts
 
+def render_tag_pages(posts):
+    """Render tag pages from list of posts"""
+
+    # Build tag dict
+    makedirs(join(SITE_DIR, "tag"))
+    tag_dict = defaultdict(list)
+    for post in posts:
+        for tag in post.meta.get('tags'):
+            tag_dict[tag].append(post)
+
+    # Render tag pages
+    for tag, tag_posts in tag_dict.items():
+        tag_args = {'posts': posts,
+                    'tag_posts': tag_posts,
+                    'tag': tag}
+        Page(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, join("tag", tag))
+
 def build_rss_feed(posts):
     """Create RSS feed from list of posts"""
 
@@ -159,20 +176,6 @@ def publish():
     # Jinja2 template arguments
     args = {'posts': posts}
 
-    # Build tag dict and render tag pages
-    makedirs(join(SITE_DIR, "tag"))
-    tag_dict = defaultdict(list)
-    for post in posts:
-        for tag in post.meta.get('tags'):
-            tag_dict[tag].append(post)
-
-    for tag, tag_posts in tag_dict.items():
-        out = join("tag", tag)
-        tag_args = {'posts': posts,
-                    'tag_posts': tag_posts,
-                    'tag': tag}
-        Page(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, out)
-
     # Render all blog posts
     for post in posts:
         post.render('post.html', args, post.link)
@@ -192,6 +195,7 @@ def publish():
     index_args['index'] = True
     posts[0].render('post.html', index_args, 'index.html')
 
+    render_tag_pages(posts)
     build_rss_feed(posts)
 
 if __name__ == "__main__":
