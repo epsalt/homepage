@@ -24,14 +24,16 @@ IMAGE_DIR = 'images/'
 class Page(object):
     """Base class for static website page rendering"""
 
-    def __init__(self, md_fname):
+    def __init__(self, directory, fname):
         md = Markdown(extensions=['markdown.extensions.extra',
                                   'markdown.extensions.meta',
                                   'markdown.extensions.smarty'],
                       output_format='html5')
 
-        with open(md_fname, 'r') as md_file:
-            self.html = md.convert(md_file.read())
+        path = join(directory, fname)
+
+        with open(md_fname, 'r') as path:
+            self.html = md.convert(path.read())
 
         # Remove list wrapping from everything except actual lists
         self.meta = {key: value if key == "tags" else value[0]
@@ -61,8 +63,8 @@ class Page(object):
 class Post(Page):
     """Class for blog posts, extends Page"""
 
-    def __init__(self, f):
-        Page.__init__(self, f)
+    def __init__(self, directory, fname):
+        Page.__init__(self, directory, fname)
 
         self.date = parse(self.meta.get('date'))
         self.directory = join(self.date.strftime('%Y'),
@@ -116,9 +118,8 @@ class Post(Page):
         feed_entry.content(content, type="html")
 
 def build_post_list():
-
     # Get blog posts from POST_DIR
-    posts = [Post(join(POST_DIR, post)) for post in listdir(POST_DIR)]
+    posts = [Post(POST_DIR, post) for post in listdir(POST_DIR)]
     sorted_posts = sorted(posts, key=lambda x: x.date, reverse=True)
 
     # Add previous and next post attributes to Post Class
@@ -142,7 +143,7 @@ def render_tag_pages(posts):
         tag_args = {'posts': posts,
                     'tag_posts': tag_posts,
                     'tag': tag}
-        Page(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, join("tag", tag))
+        Page(TEMPLATE_DIR, 'tag.md').render('tag.html', tag_args, join("tag", tag))
 
 def build_rss_feed(posts):
     """Create RSS feed from list of posts"""
@@ -182,11 +183,11 @@ def publish():
 
     # Render site root pages
     for root in ['about', 'archive', '404']:
-        root_page = Page(join(TEMPLATE_DIR, root + '.md'))
+        root_page = Page(TEMPLATE_DIR, root + '.md')
         root_page.render(root + '.html', args, root_page.meta.get('url'))
 
     # Render project pages
-    projects = [Page(join(PROJ_DIR, proj)) for proj in listdir(PROJ_DIR)]
+    projects = [Page(PROJ_DIR, proj) for proj in listdir(PROJ_DIR)]
     for project in projects:
         project.render("project.html", args, join(PROJ_DIR, project.meta.get('url')))
 
