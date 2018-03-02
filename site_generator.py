@@ -115,6 +115,17 @@ class Post(Page):
                                     'src="{}'.format(join(SITE_URL, IMAGE_DIR)))
         feed_entry.content(content, type="html")
 
+def build_post_list():
+
+    # Get blog posts from POST_DIR
+    posts = [Post(join(POST_DIR, post)) for post in listdir(POST_DIR)]
+    sorted_posts = sorted(posts, key=lambda x: x.date, reverse=True)
+
+    # Add previous and next post attributes to Post Class
+    for post in sorted_posts:
+        post.set_neighbours(sorted_posts)
+
+    return sorted_posts
 
 def build_rss_feed(posts):
     """Create RSS feed from list of posts"""
@@ -143,33 +154,27 @@ def publish():
     - All post tag files
     """
 
-    # Get blog posts from POST_DIR
-    posts = [Post(join(POST_DIR, post)) for post in listdir(POST_DIR)]
-    sorted_posts = sorted(posts, key=lambda x: x.date, reverse=True)
-
-    # Add previous and next post attributes to Post Class
-    for post in sorted_posts:
-        post.set_neighbours(sorted_posts)
+    posts = build_post_list()
 
     # Jinja2 template arguments
-    args = {'posts': sorted_posts}
+    args = {'posts': posts}
 
     # Build tag dict and render tag pages
     makedirs(join(SITE_DIR, "tag"))
     tag_dict = defaultdict(list)
-    for post in sorted_posts:
+    for post in posts:
         for tag in post.meta.get('tags'):
             tag_dict[tag].append(post)
 
-    for tag, posts in tag_dict.items():
+    for tag, tag_posts in tag_dict.items():
         out = join("tag", tag)
-        tag_args = {'posts': sorted_posts,
-                    'tag_posts': posts,
+        tag_args = {'posts': posts,
+                    'tag_posts': tag_posts,
                     'tag': tag}
         Page(join(TEMPLATE_DIR, 'tag.md')).render('tag.html', tag_args, out)
 
     # Render all blog posts
-    for post in sorted_posts:
+    for post in posts:
         post.render('post.html', args, post.link)
 
     # Render site root pages
@@ -185,7 +190,7 @@ def publish():
     # Index page
     index_args = args
     index_args['index'] = True
-    sorted_posts[0].render('post.html', index_args, 'index.html')
+    posts[0].render('post.html', index_args, 'index.html')
 
     build_rss_feed(posts)
 
