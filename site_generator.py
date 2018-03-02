@@ -115,6 +115,23 @@ class Post(Page):
                                     'src="{}'.format(join(SITE_URL, IMAGE_DIR)))
         feed_entry.content(content, type="html")
 
+
+def build_rss_feed(posts):
+    """Create RSS feed from list of posts"""
+
+    feed = FeedGenerator()
+    feed.id(SITE_URL)
+    feed.title('from the desk of e.p salt')
+    feed.author({'name':'E.P Salt', 'email':'evan@epsalt.ca'})
+    feed.link(href=SITE_URL, rel="self")
+    feed.language('en')
+
+    for post in posts:
+        post.set_rss_attributes(feed)
+
+    # Render RSS page
+    feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
+
 def publish():
     """
     Generate all static site pages.
@@ -137,21 +154,12 @@ def publish():
     # Jinja2 template arguments
     args = {'posts': sorted_posts}
 
-    # RSS header
-    feed = FeedGenerator()
-    feed.id(SITE_URL)
-    feed.title('from the desk of e.p salt')
-    feed.author({'name':'E.P Salt', 'email':'evan@epsalt.ca'})
-    feed.link(href=SITE_URL, rel="self")
-    feed.language('en')
-
     # Build tag dict and render tag pages
     makedirs(join(SITE_DIR, "tag"))
     tag_dict = defaultdict(list)
     for post in sorted_posts:
         for tag in post.meta.get('tags'):
             tag_dict[tag].append(post)
-        post.set_rss_attributes(feed)
 
     for tag, posts in tag_dict.items():
         out = join("tag", tag)
@@ -169,9 +177,6 @@ def publish():
         root_page = Page(join(TEMPLATE_DIR, root + '.md'))
         root_page.render(root + '.html', args, root_page.meta.get('url'))
 
-    # Render RSS page
-    feed.atom_file(join(SITE_DIR, 'rss'), pretty=True)
-
     # Render project pages
     projects = [Page(join(PROJ_DIR, proj)) for proj in listdir(PROJ_DIR)]
     for project in projects:
@@ -181,6 +186,8 @@ def publish():
     index_args = args
     index_args['index'] = True
     sorted_posts[0].render('post.html', index_args, 'index.html')
+
+    build_rss_feed(posts)
 
 if __name__ == "__main__":
     publish()
