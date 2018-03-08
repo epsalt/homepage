@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Static site generator for epsalt.ca. Converts markdown documents to
