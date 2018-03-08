@@ -1,5 +1,6 @@
 ---
-type:
+type: project
+template: project
 title: D3 Running Map
 date:
 url: running-map

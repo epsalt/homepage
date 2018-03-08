@@ -1,9 +1,11 @@
 ---
-type:
+type: root
+template: about
 title: Hey, welcome.
 date:
 url: about
 tags:
+template: about
 ---
 
 My name is [Evan][me], and you are currently reading my personal

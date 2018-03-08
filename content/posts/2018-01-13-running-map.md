@@ -1,5 +1,6 @@
 ---
 type: post
+template: post
 title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
 updated: 2018-01-18 00:30:00 -0700
