@@ -86,7 +86,7 @@ class SiteGenerator(object):
         sorted_posts = sorted(posts, key=lambda x: x.date, reverse=True)
 
         for post in sorted_posts:
-            post.set_neighbours(posts)
+            post.set_neighbours(sorted_posts)
 
         return sorted_posts
 
