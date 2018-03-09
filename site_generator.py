@@ -64,7 +64,7 @@ class SiteGenerator(object):
         self.render(index, index.meta.get('template'), index_args, outpath='index.html')
 
     def read_from_dir(self, src_dir, page_class):
-        """ Read all markdown pages in a directory to page_class """
+        """ Read all pages in a directory to page_class """
 
         pages = []
         for page in listdir(src_dir):
