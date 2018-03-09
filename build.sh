@@ -2,4 +2,4 @@
 
 rm -r site/*
 cp -r static/. site
-python3 generator.py
+python3 bin/generator.py
