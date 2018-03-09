@@ -48,14 +48,19 @@ class SiteGenerator(object):
         args = {'posts': posts}
 
         # Special cases
-        self.render_pages(posts, args)
+        self.render_pages(posts, args, out_dir = None)
         self.render_tags(posts)
         self.render_rss(posts, self.site, self.dirs)
 
         # General cases
-        for directory in [self.dirs['root'], self.dirs['projects']]:
-            pages = self.read_from_dir(directory, Page)
-            self.render_pages(pages, args)
+        dir_dict = {
+            "": self.dirs['root'],
+            "projects": self.dirs['projects']
+        }
+
+        for out_dir, src_dir in dir_dict.items():
+            pages = self.read_from_dir(src_dir, Page)
+            self.render_pages(pages, args, out_dir)
 
         # Index
         index = posts[0]
@@ -85,7 +90,7 @@ class SiteGenerator(object):
 
         return sorted_posts
 
-    def render_pages(self, pages, args):
+    def render_pages(self, pages, args, out_dir):
         """ Render all pages in a list with given template args """
 
         for page in pages:
@@ -95,7 +100,7 @@ class SiteGenerator(object):
             if page_type == 'post':
                 out = page.link
             else:
-                out = page.meta.get('url')
+                out = join(out_dir, page.meta.get('url'))
 
             self.render(page, template, args, out)
 
