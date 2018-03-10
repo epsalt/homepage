@@ -15,11 +15,11 @@ deploy:
 	    --include "*.css" \
 	    --include "*.js" \
 	    --metadata-directive REPLACE \
-	    --cache-control max-age=259200
+	    --cache-control max-age=1209600
 
 	aws s3 sync site/images s3://$(bucket_name)/images \
 	    --metadata-directive REPLACE \
-	    --cache-control max-age=604800
+	    --cache-control max-age=2592000
 
 	aws s3 sync site s3://$(bucket_name)/ \
 	    --exclude "*.*" \
