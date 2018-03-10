@@ -45,7 +45,9 @@ The following Python 3 packages are required:
 - Jinja2
 - feedgen
 - python-dateutil
-- aws-cli (only if deploying to S3)
+
+The deployment script uses the [aws-cli][aws] to deploy the site to a
+S3 bucket.
 
 ## License
 
@@ -54,4 +56,5 @@ licensed [CC-BY][cc-by]. All code in this repo is licensed under the
 terms of the GPLv3 License (see the file LICENSE.md).
 
 [website]: http://epsalt.ca
+[aws]: https://aws.amazon.com/cli/
 [cc-by]: https://creativecommons.org/licenses/by/4.0/
