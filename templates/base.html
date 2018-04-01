@@ -43,20 +43,20 @@
         <div class="three columns" style="margin-top: 5%">
           <canvas id="walker" width="180" height="180"></canvas>
           <hr>
-            <h3 class="sidebar"><strong>Navigate</strong></h3>
+            <h3 class="sidebar">Navigate</h3>
             <ul class="sidebar">
               <li><a href="/" class="nav">Home</a></li>
               <li><a href="/archive" class="nav">Archive</a></li>
       	      <li><a href="/about" class="nav">About</a></li>
               <li><a href="/rss" class="nav">RSS</a></li>
             </ul>
-            <h3 class="sidebar"><strong>Most Recent Posts</strong></h3>
+            <h3 class="sidebar">Most Recent Posts</h3>
             <ul class="sidebar">
               {% for post in posts[:5] %}
               <li><a href=/{{ post.link }}>{{ post.meta.get('title') }}</a></li>
               {% endfor %}
             </ul>
-            <h3 class="sidebar"><strong>Elsewhere</strong></h3>
+            <h3 class="sidebar">Elsewhere</h3>
             <ul class="sidebar">
               <li><a href="https://twitter.com/epsalt" class="nav">Twitter</a></li>
               <li><a href="https://github.com/epsalt" class="nav">Github</a></li>
