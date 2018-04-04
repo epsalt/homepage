@@ -9,6 +9,13 @@ build:
 serve:
 	python3 bin/server.py site
 
+autoreload:
+	watchmedo shell-command \
+	--ignore-patterns="*/site/*" \
+	-D \
+	-R \
+	-c 'make build'
+
 deploy:
 	aws s3 cp site s3://$(bucket_name) \
 	    --recursive \
