@@ -4,7 +4,7 @@
 build:
 	rm -r site/*
 	cp -r static/. site
-	sassc sass/skeleton.scss > site/css/skeleton.css
+	sassc scss/site.scss -s compressed > site/css/styles.min.css
 	python3 bin/generator.py
 
 serve:
