@@ -1,5 +1,6 @@
 feedgen~=0.6.1
 Jinja2~=2.10
+libsass~=0.14.2
 Markdown~=2.6.11
 python-dateutil~=2.6.1
 watchdog~=0.8.3

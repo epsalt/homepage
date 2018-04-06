@@ -45,6 +45,8 @@ The following Python 3 packages are required:
 - Jinja2
 - feedgen
 - python-dateutil
+- libsass
+- watchdog (for autoreload)
 
 The deployment script uses the [aws-cli][aws] to deploy the site to a
 S3 bucket.
