@@ -2,19 +2,22 @@
 -include site.conf
 
 build:
-	rm -r site/*
+	rm -rf site/*
 	cp -r static/. site
 	sassc scss/site.scss -s compressed > site/css/styles.min.css
 	python3 bin/generator.py
+	echo Done
 
 serve:
 	python3 bin/server.py site
 
 autoreload:
 	watchmedo shell-command \
-	--ignore-patterns="*/site/*" \
+	--ignore-patterns="*/site/*;*.#*" \
 	-D \
 	-R \
+	-w \
+	-W \
 	-c 'make build'
 
 deploy:
@@ -25,7 +28,6 @@ deploy:
 	    --include "*.js" \
 	    --metadata-directive REPLACE \
 	    --cache-control max-age=1209600
-
 	aws s3 cp site/images s3://$(bucket_name)/images \
             --recursive \
 	    --metadata-directive REPLACE \
