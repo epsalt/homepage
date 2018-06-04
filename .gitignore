@@ -2,7 +2,6 @@
 *.conf
 site/
 drafts/
-venv/
 static/.well-known/
 static/keybase.txt
 __pycache__/
