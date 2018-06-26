@@ -3,22 +3,6 @@
 {{ post.meta.get('title') }}
 {% endblock title %}
 {% block body %}
-<div class="post_nav">
-  {% if post.ppost is not none %}
-  <div class="u-pull-left">
-    <p>
-      <a href=/{{ post.ppost.link }}>&#8592; {{ post.ppost.meta.get('title') }}</a>
-    </p>
-  </div>
-  {% endif %}
-  {% if post.npost is not none %}
-  <div class="u-pull-right">
-    <p>
-      <a href=/{{ post.npost.link }}>{{ post.npost.meta.get('title') }} &#8594;</a>
-    </p>
-  </div>
-  {% endif %}
-</div>
 <h1><a class="post-title" href="/{{ post.link }}">{{ post.meta.get('title') }}</a></h1>
 <p class="dateline">
   {{ post.date.strftime("%Y-%m-%d") }} &mdash;
@@ -26,7 +10,6 @@
   <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
   {% endfor %}
 </p>
-<hr>
   {{ content }}
 <hr>
 <div class="post_nav">

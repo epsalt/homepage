@@ -2,13 +2,16 @@ html {
     overflow-y: scroll;
 }
 
-/* Headings */
 
 h1.title {
-    font-family: 'Merriweather', serif;
-    font-weight: 100;
-    letter-spacing: 1.25px;
+    font-weight: 400;
+    font-size: 7.0rem;
     color: #6D6DE1;
+    margin-bottom: 5.0rem;
+}
+
+h1.title > a {
+    border-bottom: 5px solid #6D6DE1;
 }
 
 h2 {
