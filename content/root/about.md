@@ -15,9 +15,9 @@ interesting.
 
 ## About this website
 
-This website is a static site hosted on [S3][s3], and all of the
-source code is on [GitHub][github-homepage]. Except where noted, all
-content on this website is licensed [CC-BY][cc].
+This website is a static site hosted on [S3][s3]. All of the source
+code is on [GitHub][github-homepage]. Except where noted, all content
+on this website is licensed [CC-BY][cc].
 
 ## Get in touch
 
