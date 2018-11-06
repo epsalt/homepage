@@ -9,6 +9,7 @@ tags: running
       D3
       javascript
       python
+summary: Using D3.js and Python to visualize running data.
 ---
 
 About 200 runs around Calgary, visualized with [D3.js][d3]. See the

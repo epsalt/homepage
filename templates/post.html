@@ -1,7 +1,13 @@
 {% extends "base.html" %}
-{% block title %}
-{{ post.meta.get('title') }}
-{% endblock title %}
+{% block title %}{{ post.meta.get('title') }}{% endblock title %}
+{% block twitter %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@epsalt">
+<meta name="twitter:creator" content="@epsalt">
+<meta name="twitter:title" content="{{ post.meta.get('title') }}">
+<meta name="twitter:description" content="{{ post.meta.get('summary') }}">
+<meta name="twitter:image" content="https://epsalt.ca/images/{{ post.meta.get('url') }}/twitter.png">
+{% endblock %}
 {% block body %}
 <h1><a class="post-title" href="/{{ post.link }}">{{ post.meta.get('title') }}</a></h1>
 <p class="dateline">
