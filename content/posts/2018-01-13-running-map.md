@@ -15,7 +15,7 @@ About 200 runs around Calgary, visualized with [D3.js][d3]. See the
 full interactive version [here][run] or check out the source code
 on [GitHub][git].
 
-![Running Map](/images/running-map.gif)
+![Running Map][runmap]
 *Map tiles copyright [OpenStreetMap][osm-copyright] contributors*
 
 I have been tracking my runs for a few years now, and have always
@@ -52,7 +52,7 @@ global heatmap][heatmap]. I have used the global heatmap as a resource
 when traveling to new and unfamiliar cities to aid in the search for
 scenic and well-traveled running paths.
 
-![Personal heatmap](/images/personal-heatmap.png)
+![Personal heatmap][heatm]
 *My Strava [personal heatmap][p-heatmap]*
 
 With a Strava premium subscription, you can generate your own
@@ -138,3 +138,6 @@ performance woes.
 [osm]: http://www.openstreetmap.org
 [performance-test]: http://tommykrueger.com/projects/d3tests/performance-test.php
 [d3-canvas]: https://bocoup.com/blog/d3js-and-canvas
+
+[runmap]: /images/running-map/running-map.gif
+[heatm]: /images/running-map/personal-heatmap.png
