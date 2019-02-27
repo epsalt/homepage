@@ -19,7 +19,8 @@ This map contains data from about 200 runs recorded with
 
 <div id="map-wrapper">
   <svg></svg>
-  <canvas id="running-map"></canvas>
+    <canvas id="tracks"></canvas>
+    <canvas id="points"></canvas>
      <div id="controls">
        <div style="font-family: monospace;" id="timer"></div>
        <div class="map-button" id="play-button">Pause</div>

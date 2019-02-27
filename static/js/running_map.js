@@ -12,17 +12,22 @@ var config = {
     "source": "/data/gpx_rollup.csv"
 };
 
-var canvas = document.querySelector("#running-map"),
-    context = canvas.getContext("2d"),
+var canvasPoints = document.querySelector("canvas#points"),
+    canvasTracks = document.querySelector("canvas#tracks"),
+    contextPoints = canvasPoints.getContext("2d"),
+    contextTracks = canvasTracks.getContext("2d"),
     detachedContainer = document.createElement("custom"),
     dataContainer = d3.select(detachedContainer);
 
 // initial dimensions
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+canvasPoints.width = canvasPoints.offsetWidth;
+canvasPoints.height = canvasPoints.offsetHeight;
 
-var width = canvas.offsetWidth,
-    height = canvas.offsetHeight;
+canvasTracks.width = canvasTracks.offsetWidth;
+canvasTracks.height = canvasTracks.offsetHeight;
+
+var width = canvasPoints.offsetWidth,
+    height = canvasPoints.offsetHeight;
 
 function changeResolution(canvas, context, scaleFactor) {
     // this function from https://stackoverflow.com/a/26047748
@@ -40,7 +45,8 @@ if (width < 480) {
     config.resampleInterval = 45;
     config.source = "/data/gpx_rollup45.csv";
     config.scale = 80000;
-    changeResolution(canvas, context, 2);
+    changeResolution(canvasPoints, contextPoints, 2);
+    changeResolution(canvasTracks, contextTracks, 2);
 }
 
 var projection = d3.geoMercator()
@@ -51,7 +57,7 @@ var projection = d3.geoMercator()
 var path = d3.geoPath()
     .projection(projection)
     .pointRadius(3.5)
-    .context(context);
+    .context(contextTracks);
 
 var tiles = d3.tile()
     .size([width, height])
@@ -84,18 +90,13 @@ d3.csv(config.source, function (error, data) {
         .data(nested)
         .enter()
         .append("custom")
-        .classed("geoPath", true)
-        .attr("strokeStyle", "rgba(74,20,134,0.2)")
-        .attr("lineWidth", config.trackWidth);
+        .classed("geoPath", true);
 
     var runners = dataContainer.selectAll("custom.circle")
         .data(nested)
         .enter()
         .append("custom")
-        .classed("circle", true)
-        .attr("lineWidth", config.circleWidth)
-        .attr("radius", config.radius)
-        .attr("strokeStyle", "black");
+        .classed("circle", true);
 
     var maxElapsed = Math.max.apply(Math, (data.map(function (d) { return d[3]; })));
 
@@ -106,29 +107,32 @@ d3.csv(config.source, function (error, data) {
         time;
 
     function drawCanvas() {
-        context.clearRect(0, 0, width, height);
+        contextTracks.strokeStyle = "rgba(74,20,134,0.2)";
+        contextTracks.lineWidth = config.trackWidth;
 
         tracks.each(function () {
-            var node = d3.select(this);
+            var node = d3.select(this),
+                trackData = node.data()[0].values;
 
-            context.strokeStyle = node.attr("strokeStyle");
-            context.lineWidth = node.attr("lineWidth");
-            context.beginPath();
-            path({type: "LineString", coordinates: node.data()[0].values.slice(0, node.attr("t"))});
-            context.stroke();
+            if (t > 0 && t < trackData.length) {
+                contextTracks.beginPath();
+                path({type: "LineString", coordinates: [trackData[t-1], trackData[t]]});
+                contextTracks.stroke();
+            }
         });
+
+        contextPoints.clearRect(0, 0, width, height);
+        contextPoints.lineWidth = config.circleWidth;
+        contextPoints.strokeStyle = "black";
+        contextPoints.beginPath();
 
         runners.each(function () {
             var node = d3.select(this);
-
-            context.lineWidth = node.attr("lineWidth");
-            context.strokeStyle = node.attr("strokeStyle");
-            context.beginPath();
-            context.arc(node.attr("x"), node.attr("y"), node.attr("radius"), 0, 2 * Math.PI);
-            context.stroke();
-
+            contextPoints.moveTo(parseFloat(node.attr("x")) + parseFloat(config.radius), node.attr("y"));
+            contextPoints.arc(node.attr("x") + config.radius, node.attr("y"), config.radius, 0, 2 * Math.PI);
         });
 
+            contextPoints.stroke();
     }
 
     var coord_slicer = function (d, t) {
@@ -140,9 +144,6 @@ d3.csv(config.source, function (error, data) {
             .attr("x", function (d) { return coord_slicer(d, t)[0]; })
             .attr("y", function (d) { return coord_slicer(d, t)[1]; });
 
-        tracks
-            .attr("t", t);
-
         time = new Date(null);
         time.setSeconds(t * config.resampleInterval);
         time = time.toISOString().substr(11, 5);
@@ -151,7 +152,7 @@ d3.csv(config.source, function (error, data) {
 
         timer.text("Elapsed: " + time + "/" + pct + "%");
 
-        drawCanvas();
+        drawCanvas(t);
     }
 
     d3.interval(function () {
@@ -173,6 +174,7 @@ d3.csv(config.source, function (error, data) {
     }
 
     function restart() {
+        contextTracks.clearRect(0, 0, width, height);
         t = 0;
         step(t);
     }
