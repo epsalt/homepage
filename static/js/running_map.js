@@ -155,8 +155,14 @@ d3.csv(config.source, function (error, data) {
         drawCanvas(t);
     }
 
+    function restart() {
+        contextTracks.clearRect(0, 0, width, height);
+        t = 0;
+        step(t);
+    }
+
     d3.interval(function () {
-        if (t > maxElapsed) { t = 0; }
+        if (t > maxElapsed) { restart(); }
         if (going) {
             step(t);
             t++;
@@ -171,12 +177,6 @@ d3.csv(config.source, function (error, data) {
             playButton.text("Pause");
             going = true;
         }
-    }
-
-    function restart() {
-        contextTracks.clearRect(0, 0, width, height);
-        t = 0;
-        step(t);
     }
 
     playButton.on("click", pauseResume);
