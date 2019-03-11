@@ -1,0 +1,28 @@
+.leaflet-container {
+    cursor:crosshair;
+}
+
+#map {
+    max-width: 548px;
+    height: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+#chart {
+    max-width: 550px;
+}
+
+#legend {
+    margin-left: 40px;
+}
+
+.wrapper {
+    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 550px) {
+  #map {
+      height: 400px;
+  }
+}
