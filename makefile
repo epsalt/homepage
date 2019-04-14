@@ -1,5 +1,4 @@
 #!make
--include site.conf
 
 build:
 	rm -rf site/*
@@ -20,35 +19,34 @@ autoreload:
 	-W \
 	-c 'make build'
 
+LONG_CACHE := 86400
+SHORT_CACHE := 3600
+
 deploy:
-	aws s3 cp site s3://$(bucket_name) \
-	    --recursive \
-	    --exclude "*" \
-	    --include "*.css" \
-	    --include "*.js" \
-	    --metadata-directive REPLACE \
-	    --cache-control max-age=1209600
-	aws s3 cp site/images s3://$(bucket_name)/images \
-            --recursive \
-	    --metadata-directive REPLACE \
-	    --cache-control max-age=2592000
+	aws s3 sync site s3://$(BUCKET) \
+		--size-only \
+		--delete \
+		--exclude "*" \
+		--include "rss" \
+		--cache-control max-age=$(LONG_CACHE) \
+		--content-type 'application/xml'
 
-	aws s3 cp site s3://$(bucket_name)/ \
-            --recursive \
-	    --exclude "*.*" \
-	    --exclude "rss" \
-	    --include "*.html" \
-	    --metadata-directive REPLACE \
-	    --cache-control max-age=86400 \
-	    --content-type 'text/html'
+	aws s3 sync site s3://$(BUCKET)/ \
+		--size-only \
+		--delete \
+		--exclude "*.*" \
+		--include "*.html" \
+		--cache-control max-age=$(SHORT_CACHE) \
+		--content-type 'text/html'
 
-	aws s3 cp site s3://$(bucket_name) \
-            --recursive \
-	    --exclude "*" \
-	    --include "rss" \
-	    --metadata-directive REPLACE \
-	    --cache-control max-age=86400 \
-	    --content-type 'application/xml'
+	aws s3 sync site s3://$(BUCKET) \
+		--size-only \
+		--delete \
+		--cache-control max-age=$(LONG_CACHE)
 
-	aws s3 sync site s3://$(bucket_name) \
-            --delete
+challenges:
+	aws s3 cp s3://$(CHALLENGE_BUCKET) s3://$(BUCKET)/ \
+		--recursive
+
+invalidate:
+	aws cloudfront create-invalidation --distribution-id $(CLOUDFRONT_ID) --paths '/*'

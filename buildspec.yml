@@ -1,0 +1,18 @@
+# buildspec.yml
+version: 0.2
+
+phases:
+    install:
+        commands:
+            - pip install -r requirements.txt
+
+    build:
+        commands:
+            - make build
+            - make deploy
+            - make challenges
+            - make invalidate
+
+cache:
+        paths:
+            - '/root/.cache/pip/**/*'

@@ -31,12 +31,8 @@ Run `make serve` and navigate to http://localhost:8080/ to preview.
 
 ## Deploy
 Running `make deploy` syncs the site with an AWS S3 bucket. To sync to
-your own bucket, first create a configuration file with your bucket
-details:
-
-```
-echo "bucket_name=your_bucket_name" > site.conf
-```
+your own bucket, set the $BUCKET environment variable in your build
+environment or add `BUCKET := YOUR_S3_BUCKET` to the makefile.
 
 ## Requirements
 The following Python 3 packages are required:
