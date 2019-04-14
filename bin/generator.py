@@ -32,7 +32,7 @@ SITE = {
 }
 
 
-class SiteGenerator(object):
+class SiteGenerator:
     """ Static Site generator class """
 
     def __init__(self, dirs, site, reader, renderer):
@@ -140,7 +140,7 @@ class SiteGenerator(object):
         feed.atom_file(join(dirs['site'], 'rss'), pretty=True)
 
 
-class Page(object):
+class Page:
     """ Base class for website pages """
 
     def __init__(self, html, meta):
@@ -205,7 +205,7 @@ class Post(Page):
         feed_entry.content(content, type="html")
 
 
-class MarkdownReader(object):
+class MarkdownReader:
     """ Reader for Markdown Files """
 
     def __init__(self):
@@ -226,7 +226,7 @@ class MarkdownReader(object):
         return html, meta
 
 
-class JinjaRenderer(object):
+class JinjaRenderer:
     """ Renderer for Jinja2 templates """
 
     def __init__(self, dirs):
