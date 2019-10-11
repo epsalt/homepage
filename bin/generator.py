@@ -211,7 +211,8 @@ class MarkdownReader:
     def __init__(self):
         self.extensions = ['markdown.extensions.extra',
                            'markdown.extensions.meta',
-                           'markdown.extensions.smarty']
+                           'markdown.extensions.smarty',
+                           'markdown.extensions.codehilite']
         self.md = Markdown(self.extensions, output_format='html5')
 
     def read(self, directory, fname):
