@@ -5,7 +5,6 @@ build:
 	cp -r static/. site
 	sassc scss/site.scss -s compressed > site/css/styles.min.css
 	python3 bin/generator.py
-	echo Done
 
 serve:
 	python3 bin/server.py site
