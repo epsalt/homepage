@@ -3,7 +3,7 @@
 build:
 	rm -rf site/*
 	cp -r static/. site
-	sassc scss/site.scss -s compressed > site/css/styles.min.css
+	pysassc scss/site.scss -s compressed > site/css/styles.min.css
 	python3 bin/generator.py
 
 serve:
