@@ -10,13 +10,7 @@
 
       gtag('config', 'UA-88158881-1');
     </script>
-    <title>
-      {% if index is not defined %}
-        {% block title %}{% endblock %} - e.p salt
-      {% else %}
-        e.p salt
-      {% endif %}
-    </title>
+    <title>{% if index is not defined %}{% block title %}{% endblock %} - e.p salt{% else %}e.p salt{% endif %}</title>
     <meta charset="utf-8"/>
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="description" content="e.p salt">
