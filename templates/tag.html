@@ -9,7 +9,7 @@
   {{ post.date.strftime("%Y-%m-%d") }} &mdash;
   <a href=/{{ post.link}}>{{ post.meta.get('title') }}</a>
 </p>
-<p class=>
+<p>
   {% for tag in post.meta.get('tags') %}
   <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
     {% endfor %}
