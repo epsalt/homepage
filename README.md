@@ -4,7 +4,7 @@ website is a static site generated from Markdown, with Jinja2
 templates, using Python 3.
 
 ## Content
-Posts and other content pages are writtent in Markdown and live in the
+Posts and other content pages are written in Markdown and live in the
 `content` directory. YAML metadata in the page header is used to store
 titles, tags, dates, and other information.
 
