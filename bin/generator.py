@@ -15,20 +15,20 @@ from markdown import Markdown
 from jinja2 import FileSystemLoader, Environment
 
 DIRS = {
-    'posts': 'content/posts/',
-    'projects': 'content/projects',
-    'root': 'content/root',
-    'tag': 'content/tag',
-    'templates': 'templates',
-    'site': 'site/',
-    'images': 'images/'
+    "posts": "content/posts/",
+    "projects": "content/projects",
+    "root": "content/root",
+    "tag": "content/tag",
+    "templates": "templates",
+    "site": "site/",
+    "images": "images/",
 }
 
 SITE = {
-    'url': 'https://epsalt.ca/',
-    'title': 'from the desk of e.p salt',
-    'name': 'E.P Salt',
-    'email': 'evan@epsalt.ca'
+    "url": "https://epsalt.ca/",
+    "title": "from the desk of e.p salt",
+    "name": "E.P Salt",
+    "email": "evan@epsalt.ca",
 }
 
 
@@ -44,19 +44,16 @@ class SiteGenerator:
     def publish(self):
         """ Method for rendering static site """
 
-        posts = self.build_post_list(self.dirs['posts'])
-        args = {'posts': posts}
+        posts = self.build_post_list(self.dirs["posts"])
+        args = {"posts": posts}
 
         # Special cases
-        self.render_pages(posts, args, out_dir = None)
+        self.render_pages(posts, args, out_dir=None)
         self.render_tags(posts)
         self.render_rss(posts, self.site, self.dirs)
 
         # General cases
-        dir_dict = {
-            "": self.dirs['root'],
-            "projects": self.dirs['projects']
-        }
+        dir_dict = {"": self.dirs["root"], "projects": self.dirs["projects"]}
 
         for out_dir, src_dir in dir_dict.items():
             pages = self.read_from_dir(src_dir, Page)
@@ -65,8 +62,8 @@ class SiteGenerator:
         # Index
         index = posts[0]
         index_args = args
-        index_args['index'] = True
-        self.render(index, index.meta.get('template'), index_args, outpath='index.html')
+        index_args["index"] = True
+        self.render(index, index.meta.get("template"), index_args, outpath="index.html")
 
     def read_from_dir(self, src_dir, page_class):
         """ Read all pages in a directory to page_class """
@@ -94,50 +91,48 @@ class SiteGenerator:
         """ Render all pages in a list with given template args """
 
         for page in pages:
-            page_type = page.meta.get('type')
-            template = page.meta.get('template')
+            page_type = page.meta.get("type")
+            template = page.meta.get("template")
 
-            if page_type == 'post':
+            if page_type == "post":
                 out = page.link
             else:
-                out = join(out_dir, page.meta.get('url'))
+                out = join(out_dir, page.meta.get("url"))
 
             self.render(page, template, args, out)
 
     def render_tags(self, posts):
         """ Build tag list and render tag pages """
 
-        makedirs(join(self.dirs['site'], "tag"))
+        makedirs(join(self.dirs["site"], "tag"))
 
         tag_dict = defaultdict(list)
         for post in posts:
-            for tag in post.meta.get('tags'):
+            for tag in post.meta.get("tags"):
                 tag_dict[tag].append(post)
 
         for tag, tagged_posts in tag_dict.items():
             content, meta = "", {}
             page = Page(content, meta)
-            args = {'posts': posts,
-                    'tag_posts': tagged_posts,
-                    'tag': tag}
+            args = {"posts": posts, "tag_posts": tagged_posts, "tag": tag}
             out = join("tag", tag)
 
-            self.render(page, 'tag', args, out)
+            self.render(page, "tag", args, out)
 
     def render_rss(self, posts, site, dirs):
         """ Build and render RSS feed for given post list """
 
         feed = FeedGenerator()
-        feed.id(site['url'])
-        feed.title(site['title'])
-        feed.author({'name': site['name'], 'email': site['email']})
-        feed.link(href=site['url'], rel="self")
-        feed.language('en')
+        feed.id(site["url"])
+        feed.title(site["title"])
+        feed.author({"name": site["name"], "email": site["email"]})
+        feed.link(href=site["url"], rel="self")
+        feed.language("en")
 
         for post in posts:
             post.set_rss_attributes(feed, dirs, site)
 
-        feed.atom_file(join(dirs['site'], 'rss'), pretty=True)
+        feed.atom_file(join(dirs["site"], "rss"), pretty=True)
 
 
 class Page:
@@ -154,10 +149,9 @@ class Post(Page):
     def __init__(self, content, meta):
         Page.__init__(self, content, meta)
 
-        self.date = parse(self.meta.get('date'))
-        self.directory = join(self.date.strftime('%Y'),
-                              self.date.strftime('%m'))
-        self.link = join(self.directory, self.meta.get('url'))
+        self.date = parse(self.meta.get("date"))
+        self.directory = join(self.date.strftime("%Y"), self.date.strftime("%m"))
+        self.link = join(self.directory, self.meta.get("url"))
         self.ppost = None
         self.npost = None
 
@@ -176,13 +170,13 @@ class Post(Page):
         if index == 0:
             self.npost = None
         else:
-            self.npost = posts[index-1]
+            self.npost = posts[index - 1]
 
         # Check if the post is first
-        if index == len(posts)-1:
+        if index == len(posts) - 1:
             self.ppost = None
         else:
-            self.ppost = posts[index+1]
+            self.ppost = posts[index + 1]
 
     def set_rss_attributes(self, feed, dirs, site):
         """
@@ -194,14 +188,16 @@ class Post(Page):
         """
 
         feed_entry = feed.add_entry()
-        feed_entry.id(join(site['url'], self.link))
-        feed_entry.title(self.meta.get('title'))
+        feed_entry.id(join(site["url"], self.link))
+        feed_entry.title(self.meta.get("title"))
         feed_entry.published(self.date)
-        feed_entry.updated(self.meta.get('updated'))
+        feed_entry.updated(self.meta.get("updated"))
 
         # Full content with hardlinked images
-        content = self.html.replace('src="/' + dirs['images'],
-                                    'src="{}'.format(join(site['url'], dirs['images'])))
+        content = self.html.replace(
+            'src="/' + dirs["images"],
+            'src="{}'.format(join(site["url"], dirs["images"])),
+        )
         feed_entry.content(content, type="html")
 
 
@@ -209,20 +205,24 @@ class MarkdownReader:
     """ Reader for Markdown Files """
 
     def __init__(self):
-        self.extensions = ['markdown.extensions.extra',
-                           'markdown.extensions.meta',
-                           'markdown.extensions.smarty',
-                           'markdown.extensions.codehilite']
-        self.md = Markdown(self.extensions, output_format='html5')
+        self.extensions = [
+            "markdown.extensions.extra",
+            "markdown.extensions.meta",
+            "markdown.extensions.smarty",
+            "markdown.extensions.codehilite",
+        ]
+        self.md = Markdown(self.extensions, output_format="html5")
 
     def read(self, directory, fname):
         """ Read a markdown file and convert to HTML """
 
         path = join(directory, fname)
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             html = self.md.convert(f.read())
-            meta = {key: value if key == "tags" else value[0]
-                    for key, value in self.md.Meta.items()}
+            meta = {
+                key: value if key == "tags" else value[0]
+                for key, value in self.md.Meta.items()
+            }
 
         return html, meta
 
@@ -231,16 +231,16 @@ class JinjaRenderer:
     """ Renderer for Jinja2 templates """
 
     def __init__(self, dirs):
-        self.site_dir = dirs['site']
-        self.template_dir = dirs['templates']
+        self.site_dir = dirs["site"]
+        self.template_dir = dirs["templates"]
 
     def render(self, page, template, args, outpath=None):
         """Method for rendering Pages with markdown and jinja2"""
 
         outpath = join(self.site_dir, outpath)
 
-        args['post'] = page
-        args['content'] = page.html
+        args["post"] = page
+        args["content"] = page.html
 
         # Create directory if necessary
         if not exists(dirname(outpath)):
@@ -250,8 +250,9 @@ class JinjaRenderer:
         loader = FileSystemLoader(self.template_dir)
         env = Environment(loader=loader)
         text = env.get_template(template + ".html").render(args)
-        with open(outpath, 'w') as outfile:
+        with open(outpath, "w") as outfile:
             outfile.write(text)
+
 
 if __name__ == "__main__":
     SiteGenerator(DIRS, SITE, MarkdownReader, JinjaRenderer).publish()

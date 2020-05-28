@@ -11,27 +11,29 @@ import argparse
 
 DEFAULT_PORT = 8080
 
+
 def serve(port):
     Handler = SimpleHTTPRequestHandler
-    Handler.extensions_map={
-            '.manifest': 'text/cache-manifest',
-            '.html': 'text/html',
-            '.png': 'image/png',
-            '.jpg': 'image/jpg',
-            '.svg':	'image/svg+xml',
-            '.css':	'text/css',
-            '.js':	'application/x-javascript',
-            '': 'text/html'
-        }
+    Handler.extensions_map = {
+        ".manifest": "text/cache-manifest",
+        ".html": "text/html",
+        ".png": "image/png",
+        ".jpg": "image/jpg",
+        ".svg": "image/svg+xml",
+        ".css": "text/css",
+        ".js": "application/x-javascript",
+        "": "text/html",
+    }
 
     httpd = socketserver.TCPServer(("", port), Handler)
     print("Serving HTTP at Port", port)
     httpd.serve_forever()
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Simple web server')
-    parser.add_argument('dir', help='directory to serve files from')
-    parser.add_argument('-p', '--port', type=int, help='port to serve on')
+    parser = argparse.ArgumentParser(description="Simple web server")
+    parser.add_argument("dir", help="directory to serve files from")
+    parser.add_argument("-p", "--port", type=int, help="port to serve on")
     args = parser.parse_args()
 
     chdir(args.dir)
