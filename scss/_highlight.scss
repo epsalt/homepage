@@ -5,7 +5,14 @@ div.codehilite {
 }
 
 div.codehilite > pre {
-    margin: 0
+    margin: 0;
+}
+
+pre > code {
+    background: none;
+    border: none;
+    font-size: 1em;
+    padding: 0;
 }
 
 // https://github.com/PhilipTrauner/pygments-github-css

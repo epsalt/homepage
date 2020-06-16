@@ -4,19 +4,7 @@ build:
 	rm -rf site/*
 	cp -r static/. site
 	pysassc scss/site.scss -s compressed > site/css/styles.min.css
-	python3 bin/generator.py
-
-serve:
-	python3 bin/server.py site
-
-autoreload:
-	watchmedo shell-command \
-	--ignore-patterns="*/site/*;*.#*" \
-	-D \
-	-R \
-	-w \
-	-W \
-	-c 'make build'
+	litesite config.yaml
 
 LONG_CACHE := 86400
 SHORT_CACHE := 3600

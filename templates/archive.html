@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 {% block title %} Archive {% endblock title %}
 {% block body %}
-<p>
-  This is a complete archive of posts on this website from the
-  beginning of all time.
-</p>
+    <p>
+	This is a complete archive of posts on this website from the
+	beginning of all time.
+    </p>
 
-{{ content }}
+    {{ page.content }}
 
-{% for post in posts %}
-
-<p class="archive-line">
-  {{ post.date.strftime("%Y-%m-%d") }} &mdash;
-  <a href={{ post.link}}>{{ post.meta.get('title') }}</a>
-</p>
-{% endfor %}
+    {% for section in site.sections %}
+	{% if section.name == "posts" %}
+	    {% for page in section.sorted|reverse %}
+		<p class="archive-line">
+		    {{ page.metadata["date"].strftime("%Y-%m-%d") }} &mdash;
+		    <a href={{ page.url }}>{{ page.metadata['title'] }}</a>
+		</p>
+	    {% endfor %}
+	{% endif %}
+    {% endfor %}
 {% endblock %}

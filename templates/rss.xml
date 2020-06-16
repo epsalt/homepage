@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>{{ settings["title"] }}</title>
+    <updated>{{ site.build_time|isoformat }}</updated>
+    <id>{{ page.url|canonify(settings["base"]) }}</id>
+    <link type="text/html" href="{{ site.base }}" rel="alternate"/>
+    {% for sec in page.section.subsections %}
+	{% if sec.name == "posts" %}
+	    {% for page in sec.sorted %}
+		<entry>
+		    <published>{{ page.metadata["date"]|isoformat }}</published>
+		    <updated>{{ page.metadata["updated"]|datetime|isoformat }}</updated>
+		    <title>{{ page.metadata["title"] }}</title>
+		    <content type="html">{{ page.content|canonify_media(settings["base"])|escape }}</content>
+		    <link rel="alternate" type="text/html" href="{{ page.url|canonify(settings['base']) }}"/>
+		    <id>{{ page.url|canonify(settings["base"]) }}</id>
+		    <author>
+			<name>{{ settings["author"] }}</name>
+		    </author>
+		</entry>
+	    {% endfor %}
+	{% endif %}
+    {% endfor %}
+</feed>

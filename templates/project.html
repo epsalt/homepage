@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %} {{ post.meta.get('title') }} {% endblock title %}
+{% block title %} {{ page.metadata['title'] }} {% endblock title %}
 {% block body %}
-<h1><a class="post-title" href="/projects/{{ post.meta.get('url') }}">{{ post.meta.get('title') }}</a></h1>
-{{ content }}
+    <h1><a class="post-title" href="{{ page.url }}">{{ page.metadata['title'] }}</a></h1>
+    {{ page.content }}
 {% endblock %}

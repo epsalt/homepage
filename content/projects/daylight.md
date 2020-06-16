@@ -3,7 +3,7 @@ type: project
 template: project
 title: Daylight Chart
 date:
-url: daylight
+slug: daylight
 tags:
 ---
 

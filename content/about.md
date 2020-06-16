@@ -1,9 +1,7 @@
 ---
-type: root
-template: about
 title: Hey, welcome.
 date:
-url: about
+slug: about
 tags:
 template: about
 ---

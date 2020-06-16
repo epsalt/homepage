@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} {{ value }} {% endblock title %}
+{% block body %}
+    <p> All posts tagged '{{ item.value }}' </p>
+    {% for page in item.pages %}
+
+	<p class="archive-line">
+	    {{ page.metadata["date"].strftime("%Y-%m-%d") }} &mdash;
+	    <a href=/{{ page.url }}>{{ page.metadata['title'] }}</a>
+	</p>
+	<p>
+	    {% for _item in item.category.items %}
+		{% if page in _item.pages %}
+		    <code class="tag"><a href="/{{ _item.url }}">{{ _item.value }}</a></code>
+		{% endif %}
+	    {% endfor %}
+    {% endfor %}
+	</p>
+{% endblock %}

@@ -1,0 +1,4 @@
+---
+template: rss
+slug: rss
+---

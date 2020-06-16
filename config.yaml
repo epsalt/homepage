@@ -1,0 +1,15 @@
+base: https://epsalt.ca
+title: from the desk of e.p salt
+author: E.P Salt
+email: evan@epsalt.ca
+description: this is a site
+
+content: content
+site: site
+templates: templates
+
+url:
+  posts: "{{ page|date('%Y/%m') }}/{{ page|slug }}"
+
+categories:
+  tag: tag

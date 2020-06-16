@@ -4,11 +4,12 @@ template: post
 title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
 updated: 2018-01-18 00:30:00 -0700
-url: running-map
-tags: running
-      D3
-      javascript
-      python
+slug: running-map
+tag:
+  - running
+  - D3
+  - javascript
+  - python
 summary: Using D3.js and Python to visualize running data.
 ---
 

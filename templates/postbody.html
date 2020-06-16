@@ -1,0 +1,25 @@
+<h1><a class="post-title" href="/{{ page.url }}">{{ page.metadata['title'] }}</a></h1>
+<p class="dateline">
+  {{ page.metadata["date"].strftime("%Y-%m-%d") }} &mdash;
+  {% for tag in page.metadata.get('tag') %}
+  <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
+  {% endfor %}
+</p>
+  {{ page.content }}
+<hr>
+<div class="post_nav">
+{% if page.prev is not none %}
+  <div class="u-pull-left">
+    <p>
+      <a href=/{{ page.prev.url }}>&#8592; {{ page.prev.metadata['title'] }}</a>
+    </p>
+  </div>
+  {% endif %}
+  {% if page.next is not none %}
+  <div class="u-pull-right">
+    <p>
+      <a href=/{{ page.next.url }}>{{ page.next.metadata['title'] }} &#8594;</a>
+    </p>
+  </div>
+  {% endif %}
+</div>

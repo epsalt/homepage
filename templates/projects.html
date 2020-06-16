@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Projects {% endblock title %}
+{% block body %}
+    <p>
+	This is a complete archive of projects on this website from the
+	beginning of all time.
+    </p>
+
+    {{ content }}
+
+    {% for _page in page.section.pages %}
+
+	<p class="archive-line">
+	    {{ _page.name }} &mdash;
+	    <a href={{ _page.url }}>{{ _page.metadata['title'] }}</a>
+	</p>
+    {% endfor %}
+{% endblock %}

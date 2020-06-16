@@ -1,18 +1,14 @@
 {% extends "base.html" %}
-{% block title %} {{ tag }} {% endblock title %}
+{% block title %} Tags {% endblock title %}
 {% block body %}
-{{ content }}
-<p> All posts tagged '{{ tag }}' </p>
-{% for post in tag_posts %}
+    <p>
+	This is a complete list of tags on this website.
+    </p>
 
-<p class="archive-line">
-  {{ post.date.strftime("%Y-%m-%d") }} &mdash;
-  <a href=/{{ post.link}}>{{ post.meta.get('title') }}</a>
-</p>
-<p>
-  {% for tag in post.meta.get('tags') %}
-  <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
+    {% for item in category.items %}
+	<a href=/{{ item.url }}>{{ item.value }}</a>
+	{% for page in item.pages %}
+	    <a href=/{{ page.url }}>{{ page.metadata['title'] }}</a>
+	{% endfor %}
     {% endfor %}
-  {% endfor %}
-</p>
 {% endblock %}

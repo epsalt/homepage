@@ -1,37 +1,13 @@
 {% extends "base.html" %}
-{% block title %}{{ post.meta.get('title') }}{% endblock title %}
+{% block title %}{{ page.title }}{% endblock title %}
 {% block twitter %}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@epsalt">
-<meta name="twitter:creator" content="@epsalt">
-<meta name="twitter:title" content="{{ post.meta.get('title') }}">
-<meta name="twitter:description" content="{{ post.meta.get('summary') }}">
-<meta name="twitter:image" content="https://epsalt.ca/images/{{ post.meta.get('url') }}/twitter.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@epsalt">
+    <meta name="twitter:creator" content="@epsalt">
+    <meta name="twitter:title" content="{{ page.metadata['title'] }}">
+    <meta name="twitter:description" content="{{ page.metadata.get('summary') }}">
+    <meta name="twitter:image" content="https://epsalt.ca/images/{{ page.url }}/twitter.png">
 {% endblock %}
 {% block body %}
-<h1><a class="post-title" href="/{{ post.link }}">{{ post.meta.get('title') }}</a></h1>
-<p class="dateline">
-  {{ post.date.strftime("%Y-%m-%d") }} &mdash;
-  {% for tag in post.meta.get('tags') %}
-  <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
-  {% endfor %}
-</p>
-  {{ content }}
-<hr>
-<div class="post_nav">
-{% if post.ppost is not none %}
-  <div class="u-pull-left">
-    <p>
-      <a href=/{{ post.ppost.link }}>&#8592; {{ post.ppost.meta.get('title') }}</a>
-    </p>
-  </div>
-  {% endif %}
-  {% if post.npost is not none %}
-  <div class="u-pull-right">
-    <p>
-      <a href=/{{ post.npost.link }}>{{ post.npost.meta.get('title') }} &#8594;</a>
-    </p>
-  </div>
-  {% endif %}
-</div>
+    {% include 'postbody.html' %}
 {% endblock %}

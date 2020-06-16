@@ -1,7 +1,2 @@
-feedgen~=0.8.0
-Jinja2~=2.10
 libsass~=0.19.4
-Markdown~=2.6.11
-Pygments~=2.4.2
-python-dateutil~=2.6.1
-watchdog~=0.8.3
+-e git://github.com/epsalt/litesite.git#egg=litesite
