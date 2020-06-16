@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} {{ value }} {% endblock title %}
+{% block title %} {{ item.value }} {% endblock title %}
 {% block body %}
     <p> All posts tagged '{{ item.value }}' </p>
     {% for page in item.pages %}
