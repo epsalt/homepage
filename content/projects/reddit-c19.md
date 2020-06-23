@@ -7,10 +7,6 @@ slug: reddit-c19
 tags:
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vega/5.13.0/vega.min.js" integrity="sha256-5ANkOqHtTAtUSTOlF7znoJwGhGdGkzvgR+rrSFIpoFE=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/4.13.1/vega-lite.min.js" integrity="sha256-gVLCkbJyEVv21r4PrvWDNV3mHUvt5HC8KVv9YHjLlPs=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/6.9.0/vega-embed.min.js" integrity="sha256-6lWPqwalQ3ZXNwmeOFofejP1vAT81I5N23ZzA4JE4hI=" crossorigin="anonymous"></script>
-
 This project was my entry into the Alberta Innovates [COVID-19 Data
 Science Hackathon][hackathon]. It won a [prize for best individual
 effort!][prize]
@@ -24,14 +20,7 @@ pandemic.
 **Check out the notebook on [nbviewer][notebook] and the source
 code on [Github][repo].**
 
-
-<div id="vis"></div>
-
-<script type="text/javascript">
-	var spec = "/data/reddit-c19-chart.json"
-	  vegaEmbed('#vis', spec).then(function(result) {
-  }).catch(console.error);
-</script>
+![C19 Reddit Analysis Chart][chart]
 
 ## Technology
 
@@ -49,3 +38,5 @@ code on [Github][repo].**
 [notebook]: https://nbviewer.jupyter.org/github/epsalt/reddit-c19-analysis/blob/master/c19-reddit-alberta.ipynb
 [repo]: https://github.com/epsalt/reddit-c19-analysis
 [pushshift]: https://pushshift.io/
+
+[chart]: /images/reddit-c19/chart.svg
