@@ -5,7 +5,7 @@ phases:
     install:
       runtime-versions:
         python: 3.8
-        nodejs: 15
+        nodejs: 12
       commands:
         - pip install -r requirements.txt
         - npm install
