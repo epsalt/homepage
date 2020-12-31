@@ -1,20 +1,27 @@
 {% extends "base.html" %}
-{% block title %} Archive {% endblock title %}
+{% block title %}{{ page.metadata.get('title') }} - {{ site.settings.get('title') }}{% endblock title %}
+{% block description %}{{ page.metadata["summary"] }}{% endblock %}
 {% block body %}
-    <p>
-	This is a complete archive of posts on this website from the
-	beginning of all time.
-    </p>
-
-    {{ page.content }}
-
+    <h1 class="uk-heading-divider">Archive<span class="uk-margin-left" uk-icon="icon: history; ratio: 2"></span></h1>
     {% for section in site.sections %}
 	{% if section.name == "posts" %}
 	    {% for page in section.sorted|reverse %}
-		<p class="archive-line">
-		    {{ page.metadata["date"].strftime("%Y-%m-%d") }} &mdash;
-		    <a href={{ page.url }}>{{ page.metadata['title'] }}</a>
-		</p>
+		<a href={{ page.url }}>
+		    <h3 class="uk-margin-remove">{{ page.metadata.get('title') }}</h3>
+		</a>
+		<div class="uk-link-muted">
+		    <span class uk-icon="calendar"></span>
+		    <b><time datetime={{ page.metadata["date"] }}>
+			<a href="/archive" class="uk-text-middle ">{{ page.metadata["date"].strftime("%Y-%m-%d") }}</a>
+		    </time></b>
+		    <span class="uk-margin-small-left" uk-icon="tag"></span>
+		    {% for tag in page.metadata.get('tags') %}
+			<a class="uk-text-middle" href="/tags/{{ tag }}">
+			    <b>{{ tag }}</b>{% if not loop.last %}, {% endif %}
+			</a>
+		    {% endfor %}
+		</div>
+		<p class="uk-text-italic uk-margin-remove-top uk-margin-bottom">{{ page.metadata.get('summary') }}</p>
 	    {% endfor %}
 	{% endif %}
     {% endfor %}

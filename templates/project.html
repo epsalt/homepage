@@ -1,6 +1,35 @@
 {% extends "base.html" %}
-{% block title %} {{ page.metadata['title'] }} {% endblock title %}
+{% block title %}{{ page.metadata['title'] }} - {{ site.settings['title'] }} {% endblock title %}
+{% block description %}{{ page.metadata['summary'] }}{% endblock %}
+{% block twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.metadata['title'] }}">
+    <meta name="twitter:description" content="{{ page.metadata['summary'] }}">
+    <meta name="twitter:image" content="{{ site.settings['base'] }}/images/{{ page|slug }}/twitter.png">
+    {{ super() }}
+{% endblock twitter %}
+
 {% block body %}
-    <h1><a class="post-title" href="{{ page.url }}">{{ page.metadata['title'] }}</a></h1>
-    {{ page.content }}
+    <article class="uk-article">
+	<a href=/{{ page.url }}>
+	    <h1 class="uk-article-title uk-h1 uk-margin-remove-bottom">
+		{{ page.metadata['title'] }}
+	    </h1>
+	</a>
+	<p class="uk-article-meta uk-margin-small-top">
+	    <span class uk-icon="icon: user"></span>
+	    <b><a class="uk-text-middle" href="/about">Evan</a></b>
+	    <span class="uk-margin-small-left" uk-icon="calendar"></span>
+	    <b><a class="uk-text-middle" href="/projects">
+		<time datetime={{ page.metadata["date"] }}>
+		    {{ page.metadata["date"].strftime("%Y-%m-%d") }}
+		</time>
+	    </a>
+	    </b>
+	    <span class="uk-margin-small-left" uk-icon="github-alt"></span>
+	    <b><a class="uk-text-middle" href={{ page.metadata["source"] }}>View Source</a></b>
+	</p>
+	<hr>
+	{{ page.content }}
+    </article>
 {% endblock %}

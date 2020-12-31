@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %} About {% endblock title %}
+{% block title %}{{ page.metadata["title"] }} - {{ site.settings.get('title') }}{% endblock title %}
+{% block description %}{{ page.metadata['summary'] }}{% endblock %}
 {% block body %}
-    <h1>{{ page.metadata['title'] }}</h1>
+    <h1 class="uk-heading-divider">{{ page.metadata["title"] }}</h1>
     {{ page.content }}
 {% endblock %}

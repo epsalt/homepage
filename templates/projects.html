@@ -1,18 +1,35 @@
 {% extends "base.html" %}
-{% block title %} Projects {% endblock title %}
+{% block title %}{{ page.metadata["title"] }} - {{ site.settings.get('title') }}{% endblock title %}
+{% block description %}{{ page.metadata["summary"] }}{% endblock %}
 {% block body %}
-    <p>
-	This is a complete archive of projects on this website from the
-	beginning of all time.
-    </p>
-
-    {{ content }}
-
-    {% for _page in page.section.pages %}
-
-	<p class="archive-line">
-	    {{ _page.name }} &mdash;
-	    <a href={{ _page.url }}>{{ _page.metadata['title'] }}</a>
-	</p>
-    {% endfor %}
+    <h1 class="uk-heading-divider">{{ page.metadata["title"] }}<span class="uk-margin-left" uk-icon="icon: code; ratio: 2"></span></h1>
+    <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+	{% for _page in page.section.pages %}
+	    <div>
+		<a class="uk-link-toggle" href=/{{ _page.url }}>
+		    <div class="uk-card uk-card-default uk-card-hover uk-width-xlarge">
+			<div class="uk-card-media-top">
+			    <img class="uk-padding-small" src={{ ["/images",_page.metadata['thumb']]|join('/') }} alt="">
+			</div>
+			<div class="uk-card-body uk-padding-small uk-padding-remove-top">
+			    <span class="uk-link">
+				<h3 class="uk-card-title uk-margin-remove-bottom">
+				    {{ _page.metadata['title'] }}
+				</h3>
+			    </span>
+			    <p class="uk-text-meta uk-margin-remove-top uk-margin-small-bottom">
+				<span class uk-icon="calendar"></span>
+				<time class="uk-text-middle" datetime={{ _page.metadata['date'] }}>
+				    {{ _page.metadata["date"].strftime("%Y-%m-%d") }}
+				</time>
+			    </p>
+			    <p class="uk-margin-remove-top">
+				{{ _page.metadata["summary"] }}
+			    </p>
+			</div>
+		    </div>
+		</a>
+	    </div>
+	{% endfor %}
+    </div>
 {% endblock %}

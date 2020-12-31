@@ -1,18 +1,22 @@
 {% extends "post.html" %}
-{% block title %} E.P Salt {% endblock title %}
-
+{% block title %}
+    {{ site.settings.get('title') }}
+{% endblock title %}
+{% block description %}
+    {{ site.settings['description'] }}
+{% endblock description %}
+{% block twitter %}
+    <meta name="twitter:title" content="{{ site.settings['title'] }}">
+    <meta name="twitter:description" content="{{ site.settings['description'] }}">
+{% endblock twitter %}
 {% block body  %}
-
     {% for section in site.sections %}
 	{% if section.name == "posts" %}
 	    {% for page in section.sorted %}
 		{% if loop.last %}
-
 		    {% include 'postbody.html' %}
-
 		{% endif %}
 	    {% endfor %}
 	{% endif %}
     {% endfor %}
-
 {% endblock %}

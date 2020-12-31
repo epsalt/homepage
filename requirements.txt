@@ -1,2 +1,3 @@
 libsass~=0.19.4
+yafg~=0.3
 -e git://github.com/epsalt/litesite.git#egg=litesite

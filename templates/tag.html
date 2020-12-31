@@ -1,14 +1,35 @@
 {% extends "base.html" %}
-{% block title %} Tags {% endblock title %}
+{% block title %} Posts tagged '{{ item.value }}' - {{ site.settings.get('title') }}{% endblock title %}
+{% block description %}A listing of all posts tagged '{{ item.value }}'{% endblock description %}
 {% block body %}
-    <p>
-	This is a complete list of tags on this website.
-    </p>
+    <h1 class="uk-heading-divider">
+	All Posts Tagged
+	<span uk-icon="icon: tag; ratio: 2"></span>
+	<span class="uk-text-italic">{{ item.value }}</span>
+    </h1>
+    <div class="uk-width-xlarge">
+	{% for page in item.sorted|reverse %}
+	    <a href=/{{ page.url }}>
+		<h3 class="uk-margin-remove">{{ page.metadata.get('title') }}</h3>
+	    </a>
+	    <div class="uk-link-muted">
+		<span class uk-icon="calendar"></span>
+		<b><time datetime={{ page.metadata["date"] }}>
+		    <a href="/archive" class="uk-text-middle ">{{ page.metadata["date"].strftime("%Y-%m-%d") }}</a>
+		</time></b>
+		<span class="uk-margin-small-left" uk-icon="tag"></span>
+		{% for tag in page.metadata.get('tags') %}
+		    <span class="uk-text-muted uk-text-bold">
+			{% if not tag == item.value %}
+			    <a class="uk-text-middle" href="/tags/{{ tag }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
+			{% else %}
+			    <a class="uk-text-middle uk-text-italic" href="/tags/{{ tag }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
+			{% endif %}
 
-    {% for item in category.items %}
-	<a href=/{{ item.url }}>{{ item.value }}</a>
-	{% for page in item.pages %}
-	    <a href=/{{ page.url }}>{{ page.metadata['title'] }}</a>
+		    </span>
+		{% endfor %}
+	    </div>
+	    <p class="uk-text-italic uk-margin-remove-top uk-margin-bottom">{{ page.metadata.get('summary') }}</p>
 	{% endfor %}
-    {% endfor %}
+    </div>
 {% endblock %}

@@ -1,13 +1,19 @@
 {% extends "base.html" %}
-{% block title %}{{ page.metadata["title"] }}{% endblock title %}
+{% block title %}
+    {{ page.metadata["title"] }} - {{ site.settings.get('title') }}
+    {{ super() }}
+{% endblock title %}
 {% block twitter %}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@epsalt">
-    <meta name="twitter:creator" content="@epsalt">
     <meta name="twitter:title" content="{{ page.metadata['title'] }}">
-    <meta name="twitter:description" content="{{ page.metadata.get('summary') }}">
-    <meta name="twitter:image" content="https://epsalt.ca/images/{{ page.url }}/twitter.png">
-{% endblock %}
+    <meta name="twitter:description" content="{{ page.metadata['summary'] }}">
+    <meta name="twitter:image" content="{{ site.settings['base'] }}/images/{{ page|slug }}/twitter.png">
+    {{ super() }}
+{% endblock twitter %}
+{% block description %}
+    {{ page.metadata.get('summary') }}
+{% endblock description %}
+
 {% block body %}
     {% include 'postbody.html' %}
-{% endblock %}
+{% endblock body %}

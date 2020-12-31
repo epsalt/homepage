@@ -3,7 +3,7 @@
     <title>{{ settings["title"] }}</title>
     <updated>{{ site.build_time|isoformat }}</updated>
     <id>{{ page.url|canonify(settings["base"]) }}</id>
-    <link type="text/html" href="{{ site.base }}" rel="alternate"/>
+    <link type="text/html" href="{{ site.settings['base'] }}" rel="alternate"/>
     {% for sec in page.section.subsections %}
 	{% if sec.name == "posts" %}
 	    {% for page in sec.sorted %}

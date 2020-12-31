@@ -3,14 +3,9 @@
 }
 
 #map {
-    max-width: 548px;
     height: 200px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-}
-
-#chart {
-    max-width: 550px;
 }
 
 #legend {

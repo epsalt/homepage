@@ -2,20 +2,15 @@
 type: project
 template: project
 title: Daylight Chart
-date:
+date: 2019-03-10 22:30:00 -0700
+updated: 2020-05-27 22:00:00 -0700
 slug: daylight
+thumb: daylight/twitter.png
+source: https://github.com/epsalt/daylight
+summary: An interactive D3.js visualization of daylight hours around
+	the world.
 tags:
 ---
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/leaflet-geometryutil@0.9.1/src/leaflet.geometryutil.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
-<link rel="stylesheet" type="text/css" href="/css/daylight.css">
 
 Explore how daylight hours change throughout the year in locations
 across the globe. Tap or hover over different points to update the
@@ -27,8 +22,6 @@ lock the selected location.
     <div id="chart"></div>
     <div id="legend"></div>
 </div>
-
-<script src="/js/daylight.js"></script>
 
 ## Notes
 
@@ -57,3 +50,6 @@ of the world from the landing page of [Moment Timezone][mtz].
 [td.com]: https://www.timeanddate.com/sun/canada/vancouver
 [github]: https://github.com/epsalt/daylight
 [blog]: /2019/03/daylight
+
+<link rel="stylesheet" href="/dist/daylight.css">
+<script defer src="/dist/daylight.bundle.js"></script>

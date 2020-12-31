@@ -1,15 +1,20 @@
 base: https://epsalt.ca
-title: from the desk of e.p salt
+title: E.P Salt
 author: E.P Salt
+twitter: "@epsalt"
 email: evan@epsalt.ca
-description: this is a site
+description: Evan's personal website. Not related to epsom salts in
+  any way.
 
 content: content
 site: site
 templates: templates
 
+markdown_extensions:
+  - yafg
+
 url:
   posts: "{{ page|date('%Y/%m') }}/{{ page|slug }}"
 
 categories:
-  tag: tag
+  tags: tag

@@ -1,0 +1,32 @@
+@import "node_modules/uikit/src/less/uikit.theme.less";
+@import "./highlight.less";
+
+// Variables
+@container-xsmall-max-width: 600px;
+
+// Custom
+table {
+    &:extend(.uk-table all, .uk-table-small all, .uk-table-divider all);
+}
+
+blockquote {
+    &:extend(pre all);
+    border: 0;
+    border-left: @global-border 7px solid;
+    padding-left: @global-medium-gutter;
+}
+
+figcaption {
+    font-style: oblique;
+}
+
+.sidebar-left {
+    position: fixed;
+    width: 200px !important;
+}
+
+@media (min-width: 960px) {
+    .sidebar-left+.main {
+        padding-left:220px
+    }
+}

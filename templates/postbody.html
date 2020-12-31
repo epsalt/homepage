@@ -1,25 +1,45 @@
-<h1><a class="post-title" href="/{{ page.url }}">{{ page.metadata['title'] }}</a></h1>
-<p class="dateline">
-  {{ page.metadata["date"].strftime("%Y-%m-%d") }} &mdash;
-  {% for tag in page.metadata.get('tag') %}
-  <code class="tag"><a href="/tag/{{ tag }}">{{ tag }}</a></code>
-  {% endfor %}
-</p>
-  {{ page.content }}
-<hr>
-<div class="post_nav">
-{% if page.prev is not none %}
-  <div class="u-pull-left">
-    <p>
-      <a href=/{{ page.prev.url }}>&#8592; {{ page.prev.metadata['title'] }}</a>
+<article class="uk-article">
+    <a href=/{{ page.url }}>
+	<h1 class="uk-article-title uk-h1 uk-margin-remove-bottom">
+	    {{ page.metadata['title'] }}
+	</h1>
+    </a>
+    <p class="uk-article-meta uk-margin-small-top">
+	<span class uk-icon="icon: user"></span>
+	<b><a class="uk-text-middle" href="/about">Evan</a></b>
+
+	<span class="uk-margin-small-left" uk-icon="calendar"></span>
+	<b><a class="uk-text-middle" href="/archive">
+	    <time datetime={{ page.metadata["date"] }}>
+		{{ page.metadata["date"].strftime("%Y-%m-%d") }}
+	    </time>
+	</a></b>
+
+	<span class="uk-margin-small-left" uk-icon="tag"></span>
+	{% for tag in page.metadata.get('tags') %}
+	    <a class="uk-text-middle" href="/tags/{{ tag }}">
+		<b> {{ tag }}</b>{% if not loop.last %}, {% endif %}
+	    </a>
+	{% endfor %}
     </p>
-  </div>
-  {% endif %}
-  {% if page.next is not none %}
-  <div class="u-pull-right">
-    <p>
-      <a href=/{{ page.next.url }}>{{ page.next.metadata['title'] }} &#8594;</a>
-    </p>
-  </div>
-  {% endif %}
-</div>
+    <hr>
+    {{ page.content }}
+</article>
+<ul class="uk-pagination uk-margin-medium-top uk-margin-medium-bottom">
+    {% if page.prev is not none %}
+	<li>
+	    <a href=/{{ page.prev.url }}>
+		<span class="uk-margin-small-right" uk-pagination-previous></span>
+		{{ page.prev.metadata['title'] }}
+	    </a>
+	</li>
+    {% endif %}
+    {% if page.next is not none %}
+	<li class="uk-margin-auto-left">
+	    <a href=/{{ page.next.url }}>
+		{{ page.next.metadata['title'] }}
+		<span class="uk-margin-small-left" uk-pagination-next></span>
+	    </a>
+	</li>
+    {% endif %}
+</ul>

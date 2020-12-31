@@ -3,8 +3,8 @@
 build:
 	rm -rf site/*
 	cp -r static/. site
-	pysassc scss/site.scss -s compressed > site/css/styles.min.css
 	litesite config.yaml
+	npm run build
 
 LONG_CACHE := 86400
 SHORT_CACHE := 3600

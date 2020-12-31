@@ -3,13 +3,13 @@
     window.requestAnimationFrame = requestAnimationFrame;
 })();
 
-function draw() {
+function walker() {
     // Random walk canvas animation
     var canvas = document.getElementById("walker");
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d"),
-            nrows = 18,
-            end = 20,
+            nrows = 10,
+            end = 10,
             n = 0,
             nwalkers = 10,
             dims = {"nrows": nrows,
@@ -84,3 +84,6 @@ var Walker = class {
         this.y = this.y + y_step;
     }
 };
+
+export { walker as default };
+

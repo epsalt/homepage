@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Tags - {{ site.settings.get('title') }}{% endblock title %}
+{% block body %}
+    <h1 class="uk-heading-divider">Tags<span class="uk-margin-left" uk-icon="icon: tag; ratio: 2"></span></h1>
+    <div class="uk-column-1-3@m uk-column-1-2 uk-column-divider">
+	<ul class="uk-list">
+	    {% for item in category.sorted %}
+		<li>
+		    <a class="uk-link-muted" href=/{{ item.url }}>{{ item.value }}  </a>
+		    <code class="uk-text-muted">{{ item.count }}</code>
+		</li>
+	    {% endfor %}
+	</ul>
+    </div>
+{% endblock %}

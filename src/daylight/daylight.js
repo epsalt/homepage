@@ -1,6 +1,17 @@
-/*global d3, moment, L, SunCalc*/
+import * as d3 from 'd3-5';
+import SunCalc from 'suncalc';
+import moment from 'moment-timezone';
 
-const map = (updateSunchart) => {
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
+import * as L from 'leaflet';
+import 'leaflet-defaulticon-compatibility';
+import 'leaflet-geometryutil';
+
+import './daylight.css';
+
+
+const tzMap = (updateSunchart) => {
   const osmUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   const osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
   const osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
@@ -15,7 +26,7 @@ const map = (updateSunchart) => {
     zoom: 1,
     layers: [osm],
     noWrap: true,
-//    minZoom: 1,
+    minZoom: 1,
     maxBounds: bounds,
     maxBoundsViscosity: 0.80
   });
@@ -262,14 +273,4 @@ const sunChart = (lat, lon, tz, year, resolution = 60) => {
   return update;
 };
 
-{
-  const init  = {
-    loc: "Atlantic/Madeira",
-    lat: 32.6333,
-    lon: -15.1,
-    year: new Date().getFullYear()
-  };
-
-  const updateSunchart = sunChart(init.lat, init.lon, init.loc, init.year);
-  map(updateSunchart);
-}
+export {tzMap, sunChart};

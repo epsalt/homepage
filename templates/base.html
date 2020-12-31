@@ -1,71 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-88158881-1"></script>
-	<script>
-	 window.dataLayer = window.dataLayer || [];
-	 function gtag(){dataLayer.push(arguments);}
-	 gtag('js', new Date());
-
-	 gtag('config', 'UA-88158881-1');
-	</script>
-	<title>{% block title %}{% endblock %} - E.P Salt</title>
-	<meta charset="utf-8"/>
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="description" content="e.p salt">
-	<link rel="stylesheet" href="/css/styles.min.css">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	{% include 'partials/head.html' %}
 	{% block twitter %}{% endblock %}
-	<script async type="text/javascript" src="/js/walker.js"></script>
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="{% block description %}{% endblock %}"></meta>
     </head>
-    <body onload="draw();">
-	<nav>
-	    <ul class="nav">
-		<li><a class="nav-title" href="/">e.p salt</a></li>
-		<li><a href="/about">About</a></li>
-		<li><a href="/archive">Archive</a></li>
-	    </ul>
-	</nav>
-	<div class="container">
-	    <div class="row">
-		<div class="sidebar">
-		    <div class="three columns" style="margin-top: 5%">
-			<canvas id="walker" width="180" height="180"></canvas>
-			<hr>
-			<h3 class="sidebar">Navigate</h3>
-			<ul class="sidebar">
-			    <li><a href="/" class="nav">Home</a></li>
-			    <li><a href="/archive" class="nav">Archive</a></li>
-      			    <li><a href="/about" class="nav">About</a></li>
-			    <li><a href="/rss" class="nav">RSS</a></li>
-			</ul>
-			<h3 class="sidebar">Most Recent Posts</h3>
-			<ul class="sidebar">
-			    {% for section in site.sections %}
-				{% if section.name == "posts" %}
-				    {% for page in section.sorted[-1:-6:-1] %}
-					<li><a href=/{{ page.url }}>{{ page.metadata['title'] }}</a></li>
-				    {% endfor %}
-				{% endif %}
-			    {% endfor %}
-			</ul>
-			<h3 class="sidebar">Elsewhere</h3>
-			<ul class="sidebar">
-			    <li><a href="https://twitter.com/epsalt" class="nav">Twitter</a></li>
-			    <li><a href="https://github.com/epsalt" class="nav">Github</a></li>
-			    <li><a href="mailto:evan@epsalt.ca" class="nav">Email</a></li>
-			</ul>
-		    </div>
-		</div>
-
-		<div class="eight columns offset-by-one" style="margin-top: 5%">
-		    <div class="title">
-			<h1 class="title"><a href="/">E.P Salt</a></h1>
-		    </div>
-		    {% block body %}{% endblock %}
-		</div>
+    <body>
+	{% include 'partials/navbar.html' %}
+	{% include 'partials/sidebar.html' %}
+	<div class="main uk-section uk-section-default uk-padding-small">
+	    <div class="uk-container uk-container-xsmall uk-position-relative">
+		{% block body %}{% endblock %}
 	    </div>
 	</div>
+	{% include 'partials/offcanvas.html' %}
     </body>
 </html>

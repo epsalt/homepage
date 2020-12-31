@@ -2,14 +2,13 @@
 type: project
 template: project
 title: D3 Running Map
-date:
+date: 2018-01-13 18:00:00 -0700
+updated: 2019-02-27 18:00 -0700
 slug: running-map
-tags:
+thumb: running-map/twitter.png
+source: https://github.com/epsalt/d3-running-map
+summary: 200 run animation rendered in the browser with D3.js and Canvas.
 ---
-
-<script src="//d3js.org/d3.v4.min.js"></script>
-<script src="//d3js.org/d3-tile.v0.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/map.css">
 
 This map contains data from about 200 runs recorded with
 [Strava][strava] around Calgary, Canada. The longest run is from the
@@ -17,19 +16,22 @@ This map contains data from about 200 runs recorded with
 [GitHub][github]. For more information check out the accompanying
 [blog post][blog].
 
-<div id="map-wrapper">
-  <svg></svg>
-    <canvas id="tracks"></canvas>
-    <canvas id="points"></canvas>
-     <div id="controls">
-       <div style="font-family: monospace;" id="timer"></div>
-       <div class="map-button" id="play-button">Pause</div>
-       <div class="map-button" id="restart-button">Restart</div>
-     </div>
-</div>
-
-<script src="/js/running_map.js"></script>
-*Map tiles copyright [OpenStreetMap][osm] contributors*
+<figure>
+	<div id="map-wrapper">
+		<svg id="map-container"></svg>
+		<canvas id="tracks"></canvas>
+		<canvas id="points"></canvas>
+		<div id="controls">
+			<div style="font-family: monospace;" id="timer"></div>
+			<div class="map-button" id="play-button">Pause</div>
+			<div class="map-button" id="restart-button">Restart</div>
+		</div>
+	</div>
+	<figcaption>
+	Map tiles copyright <a
+	href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
+	</figcaption>
+</figure>
 
 ## About
 
@@ -42,9 +44,11 @@ Victory][oracle-cup] and the [Strava Global Heatmap][strava-heatmap].
 [strava]: https://www.strava.com/athletes/22024093)
 [blog]: /2018/01/running-map
 [github]: https://www.github.com/epsalt/d3-running-map
-[osm]: https://www.openstreetmap.org/copyright
 [d3]: https://d3js.org/
 [tile]: http://bl.ocks.org/mbostock/eb0c48375fcdcdc00c54a92724733d0d
 [d3-canvas]: https://bocoup.com/blog/d3js-and-canvas
 [oracle-cup]: http://www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html
 [strava-heatmap]: https://labs.strava.com/heatmap/#13.00/-114.07204/51.04448/blue/run
+
+<link rel="stylesheet" href="/dist/runningMap.css">
+<script defer src="/dist/runningMap.bundle.js"></script>

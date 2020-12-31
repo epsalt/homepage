@@ -6,3 +6,4 @@ ideas/
 static/.well-known/
 static/keybase.txt
 __pycache__/
+node_modules/

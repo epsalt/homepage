@@ -1,0 +1,36 @@
+<div id="offcanvas" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+	<button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul class="uk-nav uk-nav-default">
+	    <li class="uk-nav-header">Navigate</li>
+	    <ul class="uk-nav-sub">
+		<li>
+		    <a href="/projects" class="uk-link-reset">
+			<span class="uk-icon uk-margin-small-right" uk-icon="icon: code"></span>
+			<span class="uk-text-middle">Projects</span>
+		    </a>
+		</li>
+		<li>
+		    <a href="/archive" class="uk-link-reset">
+			<span class="uk-icon uk-margin-small-right uk-text-middle" uk-icon="icon: file-text"></span>
+			<span class="uk-text-middle">Posts</span>
+		    </a>
+		</li>
+		<li>
+		    <a href="/tags" class="uk-link-reset">
+			<span class="uk-icon uk-margin-small-right uk-text-middle" uk-icon="icon: tag"></span>
+			<span class="uk-text-middle">Tags</span>
+		    </a>
+		</li>
+		<li>
+		    <a href="/about" class="uk-link-reset">
+			<span class="uk-icon uk-margin-small-right" uk-icon="icon: user; ratio: 0.95"></span>
+			<span class="uk-text-middle">About</span>
+		    </a>
+		</li>
+	    </ul>
+	    <li class="uk-nav-header">Social</li>
+	    {% include 'partials/socials.html' %}
+        </ul>
+    </div>
+</div>

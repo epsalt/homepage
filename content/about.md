@@ -1,9 +1,8 @@
 ---
-title: Hey, welcome.
-date:
+title: About Me
 slug: about
-tags:
 template: about
+summary: Some information about me.
 ---
 
 My name is [Evan][me], and you are currently reading my personal

@@ -5,20 +5,22 @@ title: Revenge of Running Map
 date: 2018-01-13 17:30:00 -0700
 updated: 2018-01-18 00:30:00 -0700
 slug: running-map
-tag:
+tags:
   - running
-  - D3
+  - d3js
   - javascript
   - python
 summary: Using D3.js and Python to visualize running data.
 ---
 
-About 200 runs around Calgary, visualized with [D3.js][d3]. See the
-full interactive version [here][run] or check out the source code
-on [GitHub][git].
+<div uk-alert class="uk-alert-primary">
+	About 200 runs around Calgary, visualized with 
+	<a href="https://d3js.org/">D3</a>. See the live map
+	<a href="/projects/running-map">here</a>.
+</div>
 
 ![Running Map][runmap]
-*Map tiles copyright [OpenStreetMap][osm-copyright] contributors*
+
 
 I have been tracking my runs for a few years now, and have always
 wanted to do something with the data. After a <span class="tip"
@@ -55,7 +57,6 @@ when traveling to new and unfamiliar cities to aid in the search for
 scenic and well-traveled running paths.
 
 ![Personal heatmap][heatm]
-*My Strava [personal heatmap][p-heatmap]*
 
 With a Strava premium subscription, you can generate your own
 [personalized heatmap][p-heatmap]. This project started out as an
@@ -141,5 +142,5 @@ performance woes.
 [performance-test]: http://tommykrueger.com/projects/d3tests/performance-test.php
 [d3-canvas]: https://bocoup.com/blog/d3js-and-canvas
 
-[runmap]: /images/running-map/running-map.gif
-[heatm]: /images/running-map/personal-heatmap.png
+[runmap]: /images/running-map/running-map.gif "Map tiles copyright OpenStreetMap contributors"
+[heatm]: /images/running-map/personal-heatmap.png "My Strava personal heatmap"

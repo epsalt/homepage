@@ -5,8 +5,10 @@ phases:
     install:
       runtime-versions:
         python: 3.8
+        nodejs: 15
       commands:
         - pip install -r requirements.txt
+        - npm install
 
     build:
         commands:
@@ -18,3 +20,4 @@ phases:
 cache:
         paths:
             - '/root/.cache/pip/**/*'
+            - 'node_modules/**/*'
