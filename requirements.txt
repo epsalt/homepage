@@ -1,3 +1,4 @@
 libsass~=0.19.4
+livereload~=2.6.3
 yafg~=0.3
 -e git://github.com/epsalt/litesite.git#egg=litesite

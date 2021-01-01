@@ -12,10 +12,8 @@ phases:
 
     build:
         commands:
-            - make build
-            - make deploy
-            - make challenges
-            - make invalidate
+            - npm run build:all
+            - bash ./bin/deploy.sh
 
 cache:
         paths:
