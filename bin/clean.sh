@@ -1,3 +1,5 @@
 #!bin/bash
 
-find ./site -mindepth 1 ! -regex '^./site/dist\(/.*\)?' -delete
+if [ -d "./site" ]; then
+   find ./site -mindepth 1 ! -regex '^./site/dist\(/.*\)?' -delete
+fi
