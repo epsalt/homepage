@@ -1,12 +1,19 @@
 {
   "name": "epsalt.ca",
   "version": "1.0.0",
-  "description": "This repository contains the source for [epsalt.ca][website]. The website is a static site generated from markdown files using a [custom static site generator][litesite] written in Python.",
-  "main": "static/js/index.js",
+  "description": "This repository contains the source for epsalt.ca. The website is a static site generated from markdown files using a custom static site generator written in Python.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "serve": "http-server ./site --ext html -o"
+    "build:content": "npm run clean && npm run static && npm run content",
+    "build:all": "npm run clean && npm run static && npm run content && webpack",
+    "clean": "rm -rf ./site/*",
+    "content": "litesite config.yaml",
+    "static": "cp -r ./static/. ./site",
+    "serve": "http-server ./site --ext html -o",
+    "watch:webpack": "webpack --watch --mode=development",
+    "watch:content": "python ./bin/reload.py",
+    "start:dev": "concurrently \"npm:watch:*\" \"npm:serve\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,27 +26,28 @@
   },
   "homepage": "https://github.com/epsalt/homepage#readme",
   "dependencies": {
-    "d3-4": "npm:d3@^4.12.2",
-    "d3-5": "npm:d3@^5.16.0",
+    "d3": "^6.3.1",
+    "d3-collection": "^1.0.7",
     "d3-tile": "^1.0.0",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geometryutil": "^0.9.3",
-    "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
     "suncalc": "^1.8.0",
     "uikit": "^3.5.9"
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "css-loader": "^5.0.0",
     "css-minimizer-webpack-plugin": "^1.1.5",
     "file-loader": "^6.1.1",
-    "http-server": "^0.12.3",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
+    "http-server": "^0.12.3",
     "mini-css-extract-plugin": "^1.2.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.2.0",
-    "webpack-cli": "^4.1.0"
+    "webpack-cli": "^4.3.1"
   }
 }

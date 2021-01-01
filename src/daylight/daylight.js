@@ -1,15 +1,16 @@
-import * as d3 from 'd3-5';
+import * as d3 from 'd3';
+import { entries } from 'd3-collection';
+
 import SunCalc from 'suncalc';
 import moment from 'moment-timezone';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
-import * as L from 'leaflet';
+import L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 import 'leaflet-geometryutil';
 
 import './daylight.css';
-
 
 const tzMap = (updateSunchart) => {
   const osmUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -34,7 +35,7 @@ const tzMap = (updateSunchart) => {
   d3.json("https://raw.githubusercontent.com/moment/moment-timezone/develop/data/meta/2020a.json")
     .then(tz => {
 
-      const zones = d3.entries(tz.zones).map(d => (
+      const zones = entries(tz.zones).map(d => (
         L.circleMarker([d.value.lat, d.value.long],
           {title: d.key, radius: 3, weight: 1, interactive: false,
             attribution: momentAttrib})
