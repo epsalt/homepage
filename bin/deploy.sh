@@ -21,11 +21,11 @@ aws s3 sync site s3://${BUCKET} \
     --delete \
     --cache-control max-age=${LONG_CACHE}
 
-if [[ -z "${CHALLENGE_BUCKET}" ]]; then
+if [[ ! -z "${CHALLENGE_BUCKET}" ]]; then
     aws s3 cp s3://${CHALLENGE_BUCKET} s3://${BUCKET}/ \
 	--recursive
 fi
 
-if [[ -z "${CLOUDFRONT_ID}" ]]; then
+if [[ ! -z "${CLOUDFRONT_ID}" ]]; then
     aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID} --paths '/*'
 fi
