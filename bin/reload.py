@@ -5,6 +5,7 @@ server = livereload.Server()
 dirs = (
     "content",
     "templates",
+    "static",
     "config.yaml",
 )
 

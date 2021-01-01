@@ -6,7 +6,7 @@
   "scripts": {
     "build:content": "npm run clean && npm run static && npm run content",
     "build:all": "npm run clean && npm run static && npm run content && webpack",
-    "clean": "rm -rf ./site/*",
+    "clean": "bash ./bin/clean.sh",
     "content": "litesite config.yaml",
     "static": "cp -r ./static/. ./site",
     "serve": "http-server ./site --ext html -o",
