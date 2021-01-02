@@ -2,7 +2,7 @@
 {% block title %}{{ page.metadata.get('title') }} - {{ site.settings.get('title') }}{% endblock title %}
 {% block description %}{{ page.metadata["summary"] }}{% endblock %}
 {% block body %}
-    <h1 class="uk-heading-divider">Archive<span class="uk-margin-left" uk-icon="icon: history; ratio: 2"></span></h1>
+    <h1 class="uk-heading-divider">{{ page.metadata.get('title') }}</h1>
     {% for section in site.sections %}
 	{% if section.name == "posts" %}
 	    {% for page in section.sorted|reverse %}
