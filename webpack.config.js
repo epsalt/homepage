@@ -1,8 +1,11 @@
 const path = require("path");
+const glob = require("glob");
 
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -14,8 +17,16 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "site/dist/"),
   },
-  devtool: "eval-cheap-source-map",
-  plugins: [new MiniCssExtractPlugin(), new MomentLocalesPlugin()],
+  plugins: [
+    new PurgeCSSPlugin({
+      safelist: [/^leaflet/],
+      paths: glob.sync(path.join(__dirname, "./site/**/*"), {
+        nodir: true,
+      }),
+    }),
+    new MiniCssExtractPlugin(),
+    new MomentLocalesPlugin(),
+  ],
   module: {
     rules: [
       {
@@ -44,6 +55,6 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
 };

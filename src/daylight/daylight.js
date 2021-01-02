@@ -4,13 +4,11 @@ import { entries } from 'd3-collection';
 import SunCalc from 'suncalc';
 import moment from 'moment-timezone';
 
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
+import './daylight.css';
+
 import L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 import 'leaflet-geometryutil';
-
-import './daylight.css';
 
 const tzMap = (updateSunchart) => {
   const osmUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
