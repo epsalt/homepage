@@ -4,7 +4,7 @@
 {% block body %}
     <h1 class="uk-heading-divider">{{ page.metadata["title"] }}<span class="uk-margin-left" uk-icon="icon: code; ratio: 2"></span></h1>
     <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
-	{% for _page in page.section.pages %}
+	{% for _page in page.section.sorted|reverse %}
 	    <div>
 		<a class="uk-link-toggle" href=/{{ _page.url }}>
 		    <div class="uk-card uk-card-default uk-card-hover uk-width-xlarge">
