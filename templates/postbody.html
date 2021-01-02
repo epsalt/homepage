@@ -4,24 +4,33 @@
 	    {{ page.metadata['title'] }}
 	</h1>
     </a>
-    <p class="uk-article-meta uk-margin-small-top">
-	<span class uk-icon="icon: user"></span>
-	<b><a class="uk-text-middle" href="/about">Evan</a></b>
+    <div class="uk-article-meta uk-margin-small-top uk-grid uk-grid-small">
+	<div>
+	    <span uk-icon="icon: user"></span>
+	    <b><a class="uk-text-middle" href="/about">Evan</a></b>
+	</div>
 
-	<span class="uk-margin-small-left" uk-icon="calendar"></span>
-	<b><a class="uk-text-middle" href="/archive">
-	    <time datetime={{ page.metadata["date"] }}>
-		{{ page.metadata["date"].strftime("%Y-%m-%d") }}
-	    </time>
-	</a></b>
+	<div>
+	    <span uk-icon="calendar"></span>
+	    <b><a class="uk-text-middle" href="/archive">
+		<time datetime={{ page.metadata["date"] }}>
+		    {{ page.metadata["date"].strftime("%Y-%m-%d") }}
+		</time>
+	    </a></b>
+	</div>
 
-	<span class="uk-margin-small-left" uk-icon="tag"></span>
-	{% for tag in page.metadata.get('tags') %}
-	    <a class="uk-text-middle" href="/tags/{{ tag }}">
-		<b> {{ tag }}</b>{% if not loop.last %}, {% endif %}
-	    </a>
-	{% endfor %}
-    </p>
+	<div>
+	    <span uk-icon="tag"></span>
+	    {% for tag in page.metadata.get('tags') %}
+		<span class="uk-text-middle uk-text-bold">
+		    <a  href="/tags/{{ tag }}">
+			{{ tag }}
+		    </a>
+		    {% if not loop.last %} / {% endif %}
+		</span>
+	    {% endfor %}
+	</div>
+    </div>
     <hr>
     {{ page.content }}
 </article>
