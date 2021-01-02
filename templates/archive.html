@@ -6,22 +6,13 @@
     {% for section in site.sections %}
 	{% if section.name == "posts" %}
 	    {% for page in section.sorted|reverse %}
-		<a href={{ page.url }}>
-		    <h3 class="uk-margin-remove">{{ page.metadata.get('title') }}</h3>
-		</a>
-		<div class="uk-link-muted">
-		    <span class uk-icon="calendar"></span>
-		    <b><time datetime={{ page.metadata["date"] }}>
-			<a href="/archive" class="uk-text-middle ">{{ page.metadata["date"].strftime("%Y-%m-%d") }}</a>
-		    </time></b>
-		    <span class="uk-margin-small-left" uk-icon="tag"></span>
-		    {% for tag in page.metadata.get('tags') %}
-			<a class="uk-text-middle" href="/tags/{{ tag }}">
-			    <b>{{ tag }}</b>{% if not loop.last %}, {% endif %}
-			</a>
-		    {% endfor %}
-		</div>
-		<p class="uk-text-italic uk-margin-remove-top uk-margin-bottom">{{ page.metadata.get('summary') }}</p>
+		<article class="uk-article uk-margin-remove">
+		    <a href=/{{ page.url }}>
+			<h3 class="uk-margin-remove">{{ page.metadata.get('title') }}</h3>
+		    </a>
+		    {% include 'partials/article-meta.html' %}
+		    <p class="uk-text-italic uk-margin-remove-top uk-margin-bottom">{{ page.metadata.get('summary') }}</p>
+		</article>
 	    {% endfor %}
 	{% endif %}
     {% endfor %}

@@ -7,29 +7,13 @@
 	<span uk-icon="icon: tag; ratio: 2"></span>
 	<span class="uk-text-italic">{{ item.value }}</span>
     </h1>
-    <div class="uk-width-xlarge">
-	{% for page in item.sorted|reverse %}
+    {% for page in item.sorted|reverse %}
+	<article class="uk-article uk-margin-remove">
 	    <a href=/{{ page.url }}>
 		<h3 class="uk-margin-remove">{{ page.metadata.get('title') }}</h3>
 	    </a>
-	    <div class="uk-link-muted">
-		<span class uk-icon="calendar"></span>
-		<b><time datetime={{ page.metadata["date"] }}>
-		    <a href="/archive" class="uk-text-middle ">{{ page.metadata["date"].strftime("%Y-%m-%d") }}</a>
-		</time></b>
-		<span class="uk-margin-small-left" uk-icon="tag"></span>
-		{% for tag in page.metadata.get('tags') %}
-		    <span class="uk-text-muted uk-text-bold">
-			{% if not tag == item.value %}
-			    <a class="uk-text-middle" href="/tags/{{ tag }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
-			{% else %}
-			    <a class="uk-text-middle uk-text-italic" href="/tags/{{ tag }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
-			{% endif %}
-
-		    </span>
-		{% endfor %}
-	    </div>
+	    {% include 'partials/article-meta.html' %}
 	    <p class="uk-text-italic uk-margin-remove-top uk-margin-bottom">{{ page.metadata.get('summary') }}</p>
-	{% endfor %}
-    </div>
+	</article>
+    {% endfor %}
 {% endblock %}
