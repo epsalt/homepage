@@ -3,9 +3,7 @@
 {% block description %}A listing of all posts tagged '{{ item.value }}'{% endblock description %}
 {% block body %}
     <h1 class="uk-heading-divider">
-	All Posts Tagged
-	<span uk-icon="icon: tag; ratio: 2"></span>
-	<span class="uk-text-italic">{{ item.value }}</span>
+	All posts tagged '{{ item.value }}'
     </h1>
     {% for page in item.sorted|reverse %}
 	<article class="uk-article uk-margin-remove">
