@@ -1,16 +1,14 @@
 <div class="uk-article-meta uk-grid uk-grid-small">
     <div>
 	<span uk-icon="calendar"></span>
-	<b><a class="uk-text-middle" href="/archive">
-	    <time datetime={{ page.metadata["date"] }}>
-		{{ page.metadata["date"].strftime("%Y-%m-%d") }}
-	    </time>
-	</a></b>
+	<time class="uk-text-middle" datetime={{ page.metadata["date"] }}>
+	    {{ page.metadata["date"].strftime("%Y-%m-%d") }}
+	</time>
     </div>
     <div>
 	<span uk-icon="tag"></span>
 	{% for tag in page.metadata.get('tags') %}
-	    <span class="uk-text-middle uk-text-bold">
+	    <span class="uk-text-middle">
 		<a href="/tags/{{ tag }}">{{ tag }}</a>
 		{% if not loop.last %} / {% endif %}
 	    </span>

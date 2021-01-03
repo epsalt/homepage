@@ -18,14 +18,11 @@
 	</a>
 	<p class="uk-article-meta uk-margin-small-top">
 	    <span uk-icon="calendar"></span>
-	    <b><a class="uk-text-middle" href="/projects">
-		<time datetime={{ page.metadata["date"] }}>
+		<time class="uk-text-middle" datetime={{ page.metadata["date"] }}>
 		    {{ page.metadata["date"].strftime("%Y-%m-%d") }}
 		</time>
-	    </a>
-	    </b>
 	    <span class="uk-margin-small-left" uk-icon="github-alt"></span>
-	    <b><a class="uk-text-middle" href={{ page.metadata["source"] }}>View Source</a></b>
+	    <a class="uk-text-middle" href={{ page.metadata["source"] }}>View Source</a>
 	</p>
 	<hr>
 	{{ page.content }}
