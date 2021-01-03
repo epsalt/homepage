@@ -3,5 +3,8 @@
 {% block description %}{{ page.metadata['summary'] }}{% endblock %}
 {% block body %}
     <h1 class="uk-heading-divider">{{ page.metadata["title"] }}</h1>
-    {{ page.content }}
+    <div class="uk-panel">
+	<img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent uk-border-circle"  src="images/about/headshot.jpg" height="150" width="150" alt="A picture of me!">
+	{{ page.content }}
+    </div>
 {% endblock %}
