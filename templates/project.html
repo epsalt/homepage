@@ -8,6 +8,14 @@
     <meta name="twitter:image" content="{{ site.settings['base'] }}/images/{{ page|slug }}/twitter.png">
     {{ super() }}
 {% endblock twitter %}
+{% block assets %}
+    {% if page.metadata.get('css') is not none %}
+	<link rel="stylesheet" href="/dist/{{ page.metadata['css'] }}.css">
+    {% endif %}
+    {% if page.metadata.get('js') is not none %}
+	<script type="text/javascript" src="/dist/{{ page.metadata['js'] }}.bundle.js" defer></script>
+    {% endif %}
+{% endblock %}
 
 {% block body %}
     <article class="uk-article">

@@ -9,7 +9,8 @@ thumb: daylight/twitter.png
 source: https://github.com/epsalt/daylight
 summary: An interactive D3.js visualization of daylight hours around
 	the world.
-tags:
+js: daylight
+css: daylight
 ---
 
 Explore how daylight hours change throughout the year in locations
@@ -50,6 +51,3 @@ of the world from the landing page of [Moment Timezone][mtz].
 [td.com]: https://www.timeanddate.com/sun/canada/vancouver
 [github]: https://github.com/epsalt/daylight
 [blog]: /2019/03/daylight
-
-<link rel="stylesheet" href="/dist/daylight.css">
-<script defer src="/dist/daylight.bundle.js"></script>

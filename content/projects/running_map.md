@@ -8,6 +8,8 @@ slug: running-map
 thumb: running-map/twitter.png
 source: https://github.com/epsalt/d3-running-map
 summary: 200 run animation rendered in the browser with D3.js and Canvas.
+js: runningMap
+css: runningMap
 ---
 
 This map contains data from about 200 runs recorded with
@@ -49,6 +51,3 @@ Victory][oracle-cup] and the [Strava Global Heatmap][strava-heatmap].
 [d3-canvas]: https://bocoup.com/blog/d3js-and-canvas
 [oracle-cup]: http://www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html
 [strava-heatmap]: https://labs.strava.com/heatmap/#13.00/-114.07204/51.04448/blue/run
-
-<link rel="stylesheet" href="/dist/runningMap.css">
-<script defer src="/dist/runningMap.bundle.js"></script>
