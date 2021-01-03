@@ -1,5 +1,5 @@
 @import "node_modules/uikit/src/less/uikit.theme.less";
-@import "./highlight.less";
+@import "./highlight.css";
 
 // Variables
 @container-xsmall-max-width: 600px;
@@ -24,6 +24,11 @@ blockquote {
 
 figcaption {
     font-style: oblique;
+}
+
+.codehilite > pre {
+    border: 0;
+    background-color: @global-muted-background;
 }
 
 .sidebar-left {
