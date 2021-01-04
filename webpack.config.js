@@ -11,6 +11,7 @@ module.exports = {
     index: "./src/index.js",
     runningMap: "./src/running_map.js",
     daylight: "./src/daylight.js",
+    walker: "./src/walker.js",
   },
   output: {
     filename: "[name].bundle.js",
